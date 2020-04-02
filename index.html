@@ -164,9 +164,10 @@
                         </div>
                     </div>
                     <!-- Section Content -->
-                    <form class="contact-form"
-                    data-message-error="Opps... Something went wrong - please try again later"
-                    data-message-success="Thanks! You will recieve a responsve in 24h!" data-validate>
+                    <form
+                    action="https://formspree.io/xyydykjk"
+                    method="POST"
+                    >
                         <div class="row mb-4">
                             <div class="col-md-6 form-group">
                                 <label>Name:</label>
@@ -174,16 +175,19 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label class="text-center">Email:</label>
-                                 <input name="email" type="email" class="form-control" required>
+                                 <input name="_replyto" type="email" class="form-control" required>
+                                 
                             </div>
                         </div>
                         <div class="form-group">
                             <textarea name="message" cols="30" rows="6" class="form-control-text" placeholder="Type your message..." required></textarea>
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-lg btn-outline-white">Send message!</button>
+                            <button type="submit" class="btn btn-lg btn-outline-white">Send</button>
                         </div>
+                        <input type="hidden" name="_subject" value="Personal Website Contact Form" />
                     </form>
+
                 </div>
             </div>
         </section>
@@ -233,7 +237,7 @@
 <script src="assets/plugins/isotope-layout/dist/isotope.pkgd.min.js"></script>
 
 <!-- JS Google Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRMEkSrFLFkLKHyLVwT0DLLTqcUhUUZdM"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRMEkSrFLFkLKHyLVwT0DLLTqcUhUUZdM"></script> -->
 
 <!-- JS Core -->
 <script src="assets/js/core.js"></script>
