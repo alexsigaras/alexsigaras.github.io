@@ -172,6 +172,14 @@ $k: 1;
     }
 }
 
+.bg-primary {
+    .btn-link {
+        &:hover, &:focus, &:active, &:focus:active {
+            color: #fff;
+        }
+    }
+}
+
 /* Btn Toggle */
 .btn-toggle {
     &[aria-expanded="false"] {
