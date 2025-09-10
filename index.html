@@ -175,7 +175,7 @@
                         <div data-social-links></div>
                     </div>
                     <div class="spread-icons col-md-12 text-center text-md-right">
-                        <p class="text-muted mt-3 mb-0">© Alexandros Sigaras<br>
+                        <p class="text-muted mt-3 mb-0">© <span id="current-year"></span> Alexandros Sigaras<br>
                     </div>
                 </div>
             </div>
@@ -302,6 +302,7 @@
                     container.appendChild(a);
                 });
             });
+            document.getElementById('current-year').textContent = new Date().getFullYear();
         });
     </script>
 
