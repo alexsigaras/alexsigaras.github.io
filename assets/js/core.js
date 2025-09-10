@@ -968,9 +968,13 @@ Author:         Suelo
     });
 
     $(window).on('load', function (){
-        $pageLoader.fadeOut(300, function(){
+        if ($pageLoader.length) {
+            $pageLoader.fadeOut(300, function(){
+                $body.addClass('loaded');
+            });
+        } else {
             $body.addClass('loaded');
-        });
+        }
         if(pageScrolling) Core.Basic.footer();
     });
 
