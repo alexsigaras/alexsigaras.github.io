@@ -3,18 +3,6 @@
 
 <head>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-13280027-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-13280027-1');
-    </script>
 
     <!-- Meta -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -61,12 +49,6 @@
 
 <body class="navigation-panel page-scrolling dark-scheme">
 
-    <!-- Loader -->
-    <div id="page-loader">
-        <svg class="loader" viewBox="0 0 28 28">
-            <circle cx="14" cy="14" r="12" stroke-width="2"></circle>
-        </svg>
-    </div>
 
     <!-- Navigation -->
      <nav id="navigation" class="navigation-panel dark" aria-label="Primary">
@@ -297,6 +279,20 @@
                     container.appendChild(a);
                 });
             });
+        });
+    </script>
+
+    <!-- Google Analytics -->
+    <script>
+        window.addEventListener('load', function () {
+            var gtagScript = document.createElement('script');
+            gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=UA-13280027-1';
+            gtagScript.async = true;
+            document.head.appendChild(gtagScript);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-13280027-1');
         });
     </script>
 
