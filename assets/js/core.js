@@ -84,14 +84,9 @@ Author:         Suelo
                 var $bgImage = $('.bg-image-container',$content);
                 if($bgImage.length) {
                     $bgImage.each(function(){
-                        var src = $(this).children('img').attr('src');
                         var $self = $(this);
 
-                        $self.css('background-image','url('+src+')').children('img').hide();
-
-                        $self.imagesLoaded({
-                            background: true
-                        }, function(instance, image) {
+                        $self.imagesLoaded(function() {
                             $self.addClass('loaded');
                         });
                     });
