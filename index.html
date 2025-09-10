@@ -18,7 +18,8 @@
 
     <!-- Meta -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <meta name="theme-color" content="#B31B1B" />
 
     <!-- Preconnects -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -48,8 +49,9 @@
         integrity="sha256-3h45mwconzsKjTUULjY+EoEkoRhXcOIU4l5YAw2tSOU=" crossorigin="anonymous" />
 
     <!-- CSS Icons -->
-    <link rel="stylesheet" href="assets/css/themify-icons.css" />
-    <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+     <link rel="stylesheet" href="assets/css/themify-icons.css" />
+     <link rel="preload" href="assets/fonts/themify.woff" as="font" type="font/woff" crossorigin />
+     <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
 
     <!-- CSS Base -->
     <link id="theme" rel="stylesheet" href="assets/css/themes/theme-cornell-red.min.css" />
@@ -66,7 +68,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav id="navigation" class="navigation-panel dark">
+     <nav id="navigation" class="navigation-panel dark" aria-label="Primary">
 
         <div class="navigation-inner">
             <!-- Navigation Primary -->
@@ -80,7 +82,7 @@
     <!-- Navigation / End -->
 
     <!-- Navigation Toggle -->
-    <a id="navigation-toggle" class="nav-toggle"><span></span><span></span><span></span><span></span></a>
+     <a id="navigation-toggle" class="nav-toggle" aria-label="Toggle navigation" role="button"><span></span><span></span><span></span><span></span></a>
 
     <!-- Content -->
     <div id="content">
@@ -90,7 +92,7 @@
             data-local-scroll>
 
             <!-- BG Image -->
-            <div class="bg-image-container"><img src="assets/img/photos/Alex_Sigaras_BW.jpg" alt="" fetchpriority="high"></div>
+             <div class="bg-image-container"><img src="assets/img/photos/Alex_Sigaras_BW.jpg" alt="Portrait of Alex Sigaras" fetchpriority="high" decoding="async"></div>
 
             <!-- Section Content -->
             <div class="section-content">
@@ -117,7 +119,7 @@
                 <div class="container-slim">
                     <!-- Section Header -->
                     <div class="section-header">
-                        <img src="assets/img/alex/alex-sm.jpg" alt="" class="section-header-image" loading="lazy">
+                     <img src="assets/img/alex/alex-sm.jpg" alt="Alex Sigaras" class="section-header-image" loading="lazy" decoding="async">
                         <div class="section-header-content"><span class="typing">About Alex Sigaras</span></div>
                     </div>
                     <!-- Resume - About -->
@@ -185,7 +187,7 @@
                     <div class="container-slim">
                         <!-- Section Header -->
                         <div class="section-header">
-                            <img src="assets/img/alex/alex-sm.jpg" alt="" class="section-header-image" loading="lazy">
+                              <img src="assets/img/alex/alex-sm.jpg" alt="Alex Sigaras" class="section-header-image" loading="lazy" decoding="async">
                             <div class="section-header-content">
                                 <span class="typing">Send me a message</span>
                             </div>
@@ -194,18 +196,18 @@
                         <form action="https://formspree.io/xyydykjk" method="POST">
                             <div class="row mb-4">
                                 <div class="col-md-6 form-group">
-                                    <label>Name:</label>
-                                    <input name="name" type="text" class="form-control" required>
+                                    <label for="message-name">Name:</label>
+                                    <input id="message-name" name="name" type="text" class="form-control" required>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label class="text-center">Email:</label>
-                                    <input name="_replyto" type="email" class="form-control" required>
+                                    <label for="message-email" class="text-center">Email:</label>
+                                    <input id="message-email" name="_replyto" type="email" class="form-control" required>
 
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea name="message" cols="30" rows="6" class="form-control-text"
-                                    placeholder="Type your message..." required></textarea>
+                                <label for="message-text">Message:</label>
+                                <textarea id="message-text" name="message" cols="30" rows="6" class="form-control-text" placeholder="Type your message..." required></textarea>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-lg btn-outline-white">Send</button>
@@ -220,8 +222,8 @@
     </div>
 
     <!-- Window Toggle - Message -->
-    <button class="window-toggle" data-target="#message-window"><i class="fa fa-comments"></i><i
-            class="fa fa-times"></i></button>
+     <button class="window-toggle" data-target="#message-window" aria-label="Toggle message window"><i class="fa fa-comments"></i><i
+             class="fa fa-times"></i></button>
 
     <!-- Modal / Video -->
     <div class="modal modal-video fade" id="modalVideo" role="dialog">
