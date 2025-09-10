@@ -1,0 +1,12 @@
+{
+  "cv": {"label": "CV", "href": "cv.pdf", "icon": "far fa-file-pdf"},
+  "linkedin": {"label": "LinkedIn", "href": "https://www.linkedin.com/in/AlexSigaras", "icon": "fab fa-linkedin-in"},
+  "x": {"label": "X", "href": "https://twitter.com/AlexSigaras", "icon": "fab fa-twitter-x"},
+  "google_scholar": {"label": "Google Scholar", "href": "https://scholar.google.com/citations?user=LupDxKUAAAAJ&hl=en&oi=ao", "icon": "ai ai-google-scholar"},
+  "orcid": {"label": "ORCID", "href": "https://orcid.org/0000-0002-7607-559X", "icon": "ai ai-orcid"},
+  "pubmed": {"label": "PubMed", "href": "https://www.ncbi.nlm.nih.gov/myncbi/alexandros.sigaras.1/bibliography/public/", "icon": "ai ai-pubmed"},
+  "nih_reporter": {"label": "NIH Reporter", "href": "https://reporter.nih.gov/search/wLwxNPurzE2RuuqxhvwP9w/projects", "icon": "fa fa-list"},
+  "web_of_science": {"label": "Web of Science", "href": "https://www.webofscience.com/wos/author/record/K-3037-2015", "icon": "ai ai-clarivate"},
+  "semantic_scholar": {"label": "Semantic Scholar", "href": "https://www.semanticscholar.org/author/Alexandros-Sigaras/2835550", "icon": "ai ai-semantic-scholar"},
+  "github": {"label": "Github", "href": "https://github.com/alexsigaras", "icon": "fab fa-github"}
+}
