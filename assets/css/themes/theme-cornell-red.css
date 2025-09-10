@@ -5573,6 +5573,13 @@ html.locked-scrolling body {
     text-decoration: none
 }
 
+.bg-primary .btn-link:hover,
+.bg-primary .btn-link:focus,
+.bg-primary .btn-link:active,
+.bg-primary .btn-link:focus:active {
+    color: #fff;
+}
+
 .btn-toggle[aria-expanded="false"]>span:nth-child(1) {
     display: block
 }
