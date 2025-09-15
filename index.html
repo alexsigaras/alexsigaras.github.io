@@ -29,13 +29,14 @@
     <link rel="canonical" href="https://alexsigaras.github.io/">
     <meta property="og:title" content="Alex Sigaras - Assistant Professor of Research in Systems and Computational Biomedicine">
     <meta property="og:description" content="Personal website of Alex Sigaras, Assistant Professor of Research in Systems and Computational Biomedicine, featuring research, CV, and contact information.">
-    <meta property="og:image" content="https://alexsigaras.github.io/assets/img/photos/Alex_Sigaras_BW.webp">
+    <meta property="og:image" content="https://alexsigaras.github.io/assets/img/photos/Alex Sigaras 1.webp">
     <meta property="og:url" content="https://alexsigaras.github.io/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Alex Sigaras - Assistant Professor of Research in Systems and Computational Biomedicine">
     <meta name="twitter:description" content="Personal website of Alex Sigaras, Assistant Professor of Research in Systems and Computational Biomedicine, featuring research, CV, and contact information.">
-    <meta name="twitter:image" content="https://alexsigaras.github.io/assets/img/photos/Alex_Sigaras_BW.webp">
-    <link rel="preload" as="image" href="assets/img/photos/Alex_Sigaras_BW.webp" fetchpriority="high" />
+    <meta name="twitter:image" content="https://alexsigaras.github.io/assets/img/photos/Alex Sigaras 1.webp">
+    <link rel="preload" as="image" href="assets/img/photos/Alex Sigaras 1.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="assets/img/photos/Alex Sigaras 2.webp" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,20 +91,56 @@
         .col-lg-8 { flex: 0 0 66.666667%; max-width: 66.666667%; padding: 0 15px; }
         .align-items-center { align-items: center; }
 
-        /* Hero section critical styles */
+        /* Hero section critical styles - Portrait Layout */
         .bg-dark { background-color: #2f2f2f; }
-        .bg-image-container {
+        .hero-portrait {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        .portrait-image {
+            flex: 0 0 40%;
+            max-width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: 3rem;
+        }
+        .portrait-image {
+            position: relative;
+        }
+        .portrait-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 2s ease-in-out, transform 0.3s ease;
         }
-        .bg-image-container img { display: none; }
-        .bg-image-container.loaded { opacity: 1; }
+        .portrait-image img.active {
+            opacity: 1;
+        }
+        .portrait-image img:hover {
+            transform: scale(1.02);
+        }
+        .portrait-image::before {
+            content: '';
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 2/3;
+        }
+        .portrait-content {
+            flex: 0 0 60%;
+            max-width: 60%;
+            padding-left: 3rem;
+        }
 
         /* Typography critical styles */
         h1, h2 { font-family: Poppins, sans-serif; margin: 0; }
@@ -152,15 +189,519 @@
             color: inherit;
             border: none;
             background: transparent;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            padding: 1rem 0;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        .btn-go.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .btn-go:hover {
+            color: #b31b1b;
+            transform: translateY(2px);
+        }
+        .ml-2 { margin-left: 0.5rem; }
+        .mb-4 { margin-bottom: 1.5rem; }
+
+        /* Social Links Compact Design */
+        .social-links-container {
+            margin: 1.5rem 0;
+        }
+        .social-links-primary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .social-links-secondary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .social-links-secondary.expanded {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 0.75rem;
+        }
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            color: inherit;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .social-link:hover {
+            background: rgba(179, 27, 27, 0.2);
+            color: #fff;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        .social-link i {
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .social-link.primary {
+            background: rgba(179, 27, 27, 0.15);
+            font-weight: 500;
+        }
+        .social-link.primary:hover {
+            background: rgba(179, 27, 27, 0.3);
+        }
+        .social-expand-btn {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: inherit;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .social-expand-btn:hover {
+            border-color: rgba(179, 27, 27, 0.5);
+            background: rgba(179, 27, 27, 0.1);
+        }
+        .social-expand-btn i {
+            margin: 0;
+            transition: transform 0.3s ease;
+        }
+
+        /* Footer Social Links Styling */
+        .footer-social {
+            margin: 0;
+        }
+        .footer-social .social-link {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+        .footer-social .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .footer-social .social-link.primary {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .footer-social .social-link.primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .footer-social .social-expand-btn {
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .footer-social .social-expand-btn:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Bio Expandable Styles */
+        .bio-container {
+            margin-top: 2rem;
+            transition: all 0.4s ease;
+        }
+        .bio-button {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: inherit;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .bio-button:hover {
+            background: rgba(179, 27, 27, 0.2);
+            border-color: rgba(179, 27, 27, 0.4);
+            transform: translateY(-2px);
+        }
+        .bio-button i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        .bio-button.expanded i {
+            transform: rotate(180deg);
+        }
+        .bio-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            overflow-y: auto;
             padding: 0;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(179, 27, 27, 0.6) rgba(255, 255, 255, 0.1);
+        }
+        .bio-overlay::-webkit-scrollbar {
+            width: 8px;
+        }
+        .bio-overlay::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .bio-overlay::-webkit-scrollbar-thumb {
+            background: rgba(179, 27, 27, 0.6);
+            border-radius: 4px;
+        }
+        .bio-overlay::-webkit-scrollbar-thumb:hover {
+            background: rgba(179, 27, 27, 0.8);
+        }
+        .bio-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .bio-overlay-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            position: relative;
+        }
+        .bio-overlay h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .bio-overlay h2, .bio-overlay h3, .bio-overlay h4 {
+            color: #ccc;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+        .bio-text-content {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        .bio-text-content p {
+            color: #e0e0e0;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .bio-text-content p:first-child {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+        .bio-buttons-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding-top: 1rem;
+        }
+        .bio-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+        .bio-close:hover {
+            background: rgba(179, 27, 27, 0.8);
+            transform: scale(1.1);
+        }
+        .bio-copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            position: relative;
+        }
+        .bio-copy-btn:hover {
+            background: rgba(179, 27, 27, 0.8);
+            transform: scale(1.1);
+        }
+        .bio-copy-btn.copied {
+            background: rgba(34, 139, 34, 0.8);
+        }
+        .copy-tooltip {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .copy-tooltip.show {
+            opacity: 1;
+        }
+
+        /* Mobile adjustments for bio overlay */
+        @media (max-width: 768px) {
+            .bio-overlay-content {
+                padding: 1rem;
+                text-align: center;
+            }
+            .bio-overlay h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            .bio-overlay h2 {
+                font-size: 1rem !important;
+                line-height: 1.3;
+                margin-bottom: 0.75rem;
+                padding: 0 0.5rem;
+            }
+            .bio-overlay h3 {
+                font-size: 1rem !important;
+                line-height: 1.3;
+                margin-bottom: 0.75rem;
+                padding: 0 0.5rem;
+            }
+            .bio-overlay h4 {
+                font-size: 0.95rem !important;
+                line-height: 1.3;
+                margin-bottom: 1.5rem;
+                padding: 0 0.5rem;
+            }
+            .bio-text-content {
+                text-align: left;
+                margin-top: 1.5rem;
+            }
+            .bio-buttons-container {
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            .bio-close, .bio-copy-btn {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Very small mobile adjustments */
+        @media (max-width: 480px) {
+            .bio-overlay h1 {
+                font-size: 1.8rem;
+            }
+            .bio-overlay h2, .bio-overlay h3 {
+                font-size: 0.9rem !important;
+            }
+            .bio-overlay h4 {
+                font-size: 0.85rem !important;
+            }
+        }
+        .bio-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            margin-top: 0;
+        }
+        .bio-content.expanded {
+            max-height: 80vh;
+            opacity: 1;
+            margin-top: 2rem;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(179, 27, 27, 0.6) rgba(255, 255, 255, 0.1);
+        }
+        .bio-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .bio-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        .bio-content::-webkit-scrollbar-thumb {
+            background: rgba(179, 27, 27, 0.6);
+            border-radius: 4px;
+        }
+        .bio-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(179, 27, 27, 0.8);
+        }
+        .bio-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .bio-close:hover {
+            background: rgba(179, 27, 27, 0.8);
+            transform: scale(1.1);
+        }
+        .bio-copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 4rem;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .bio-copy-btn:hover {
+            background: rgba(179, 27, 27, 0.8);
+            transform: scale(1.1);
+        }
+        .bio-copy-btn.copied {
+            background: rgba(34, 139, 34, 0.8);
+        }
+        .copy-tooltip {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .copy-tooltip.show {
+            opacity: 1;
+        }
+        .hero-portrait.bio-expanded {
+            align-items: flex-start;
+            padding-top: 4rem;
+        }
+        .hero-portrait.bio-expanded .portrait-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero-portrait.bio-expanded .portrait-content h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .hero-portrait.bio-expanded .social-links-container {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .hero-portrait.bio-expanded .btn-go {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
         /* Responsive adjustments */
+        @media (max-width: 991px) {
+            .hero-portrait {
+                flex-direction: column;
+                text-align: center;
+                padding: 3rem 0;
+            }
+            .portrait-image {
+                flex: none;
+                max-width: 100%;
+                padding-right: 0;
+                margin-bottom: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+            .portrait-image::before {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            .portrait-image img {
+                max-width: 300px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .portrait-content {
+                flex: none;
+                max-width: 100%;
+                padding-left: 0;
+            }
+            .social-links-primary {
+                justify-content: center;
+            }
+            .social-links-secondary {
+                justify-content: center;
+            }
+        }
         @media (max-width: 767px) {
             .display-3 { font-size: 2.5rem; }
-            .col-lg-8 { flex: 0 0 100%; max-width: 100%; }
-            .fullheight { height: auto; min-height: 100vh; }
+            .hero-portrait { padding: 2rem 0; }
+            .portrait-image::before {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+            .portrait-image img {
+                max-width: 250px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
             .navigation-panel #navigation-toggle { top: 30px; right: 30px; }
         }
         @media (max-width: 360px) {
@@ -194,7 +735,6 @@
             <!-- Navigation Primary -->
             <ul class="nav nav-primary-panel">
                 <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
             </ul>
         </div>
 
@@ -211,19 +751,63 @@
         <section id="home" class="section section-home-basic fullheight dark bg-dark" data-scheme="dark"
             data-local-scroll>
 
-            <!-- BG Image -->
-             <div class="bg-image-container" style="background-image: url('assets/img/photos/Alex_Sigaras_BW.webp');"><img src="assets/img/photos/Alex_Sigaras_BW.webp" alt="Portrait of Alex Sigaras" fetchpriority="high" decoding="sync" width="2048" height="1591"></div>
-
-            <!-- Section Content -->
+            <!-- Portrait Hero Layout -->
             <div class="section-content">
-                <div class="container" data-local-scroll>
-                    <div class="row align-items-center">
-                        <div class="col-lg-8">
+                <div class="container">
+                    <div class="hero-portrait">
+                        <!-- Portrait Image -->
+                        <div class="portrait-image" id="portrait-container">
+                            <img id="portrait-1" src="assets/img/photos/Alex Sigaras 1.webp"
+                                 alt="Portrait of Alex Sigaras"
+                                 fetchpriority="high"
+                                 decoding="sync"
+                                 width="400"
+                                 height="600">
+                            <img id="portrait-2" src="assets/img/photos/Alex Sigaras 2.webp"
+                                 alt="Portrait of Alex Sigaras"
+                                 loading="eager"
+                                 decoding="sync"
+                                 width="400"
+                                 height="600">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="portrait-content">
                             <h1 class="display-3 mb-1">Alex Sigaras</h1>
-                            <h2><span class="typing text-muted">Assistant Professor of Research in Systems and Computational Biomedicine</span> <a href="#about"
-                                    class="btn-go btn-go-down  show-after-typing ml-4" aria-label="Scroll to about section"><i
-                                        class="fa fa-angle-down" aria-hidden="true"></i></a></h2>
-                            <div data-social-links></div>
+                            <h2 class="mb-2 text-muted" style="font-size: 1.2rem; font-weight: 400;">
+                                <span class="typing">Assistant Professor of Research in Systems and Computational Biomedicine</span>
+                            </h2>
+                            <h3 class="mb-2 text-muted" style="font-size: 1.2rem; font-weight: 400;">
+                                <span class="typing">Director of AI & XR, Englander Institute for Precision Medicine</span>
+                            </h3>
+                            <h4 class="mb-4 text-muted" style="font-size: 1.1rem; font-weight: 300;">
+                                <span class="typing">Weill Cornell Medicine</span>
+                            </h4>
+                            <div class="social-links-container">
+                                <!-- Primary social links with More button inline -->
+                                <div class="social-links-primary" style="align-items: center;">
+                                    <div style="display: contents;" data-social-links="cv linkedin google_scholar"></div>
+
+                                    <!-- Expand button inline with primary links -->
+                                    <button class="social-expand-btn" onclick="toggleSocialLinks()" aria-label="Show more links">
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                                <!-- Secondary social links (expandable) -->
+                                <div class="social-links-secondary" data-social-links="x orcid pubmed nih_reporter web_of_science semantic_scholar github"></div>
+                            </div>
+                            <button onclick="toggleBio()" class="btn-go btn-go-down show-after-typing" aria-label="Show bio" style="background: none; border: none; color: inherit; cursor: pointer;">
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                <span class="ml-2">Learn More</span>
+                            </button>
+
+                            <!-- Bio Container -->
+                            <div class="bio-container">
+                                <button class="bio-button" onclick="toggleBio()" aria-label="Show short bio">
+                                    Short Bio<i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -231,31 +815,36 @@
 
         </section>
 
-        <!-- Section - About -->
-        <section id="about" class="section" data-scheme="light">
+        <!-- Bio Overlay -->
+        <div class="bio-overlay" id="bio-overlay">
+            <div class="bio-overlay-content">
+                <h1 style="margin-top: 1rem;">Alex Sigaras</h1>
+                <h2 style="font-size: 1.2rem; font-weight: 400;">Assistant Professor of Research in Systems and Computational Biomedicine</h2>
+                <h3 style="font-size: 1.2rem; font-weight: 400;">Director of AI & XR, Englander Institute for Precision Medicine</h3>
+                <h4 style="font-size: 1.1rem; font-weight: 300;">Weill Cornell Medicine</h4>
 
-            <!-- Section Content -->
-            <div class="section-content">
-                <div class="container-slim">
-                    <!-- Section Header -->
-                    <div class="section-header">
-                     <img src="assets/img/alex/alex-sm.jpg" alt="Alex Sigaras" class="section-header-image" loading="lazy" decoding="async" width="129" height="129">
-                        <div class="section-header-content"><span class="typing">About Alex Sigaras</span></div>
-                    </div>
-                    <!-- Resume - About -->
-                    <div class="resume-box" data-local-scroll>
-                        <p class="lead">Alex is an Assistant Professor of Research in Systems and Computational Biomedicine and an Assistant Professor of Research in Computational Biomedicine at Weill Cornell Medicine, the Director of AI-XR Lab, and the Director of AI and XR at the Englander Institute for Precision Medicine at Weil Cornell Medicine.</p>
-                        <p class="lead">He develops software solutions for the Englander Institute for Precision Medicine and Institute for Computational Biomedicine with projects spanning over healthcare system design, LIMS and pipeline design for computational genomic analysis. His research interest focuses on leveraging AI and Medical Extended Reality technologies in a translational manner benefiting patients but also towards teaching the future of medicine in a plethora of medical domains including Precision Medicine, Emergency Medicine, Embryology, Otorhinolaryngology, Cardiology, Pathology, Radiology and Medical Education.</p>
-                        <p class="lead">A Fulbright scholar recipient, Alex earned his masters in Computer Science from Columbia University. While at Columbia, Alex worked as a researcher at Prof. Allen’s Robotics Lab focusing on medical robotics for surgery and brain computer interfaces.</p>
-                        <p class="lead">As an undergrad, Alex gave numerous invited talks on his research to universities and conferences including the prime minister of Greece and chairman of Microsoft Bill Gates. Parallel to his studies, Alex worked at Microsoft’s education division helping universities transition to the cloud and as a technical editor in a computer magazine.</p>
-                        <p><a href="cv.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="far fa-file-pdf i-before"></i>Download CV</a>
-                        <a href="https://www.linkedin.com/in/AlexSigaras" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fab fa-linkedin-in i-before"></i>View LinkedIn</a></p>
+                <div class="bio-text-content" id="bio-text-content">
+                    <!-- Buttons Container -->
+                    <div class="bio-buttons-container">
+                        <button class="bio-copy-btn" onclick="copyBioText()" aria-label="Copy bio text">
+                            <i class="fa fa-copy" aria-hidden="true"></i>
+                            <div class="copy-tooltip" id="copy-tooltip">Copied!</div>
+                        </button>
+                        <button class="bio-close" onclick="toggleBio()" aria-label="Close bio">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
                     </div>
 
+                    <p>Alex is an Assistant Professor of Research in Systems and Computational Biomedicine and an Assistant Professor of Research in Computational Biomedicine at Weill Cornell Medicine, the Director of AI-XR Lab, and the Director of AI and XR at the Englander Institute for Precision Medicine at Weil Cornell Medicine.</p>
+
+                    <p>He develops software solutions for the Englander Institute for Precision Medicine and Institute for Computational Biomedicine with projects spanning over healthcare system design, LIMS and pipeline design for computational genomic analysis. His research interest focuses on leveraging AI and Medical Extended Reality technologies in a translational manner benefiting patients but also towards teaching the future of medicine in a plethora of medical domains including Precision Medicine, Emergency Medicine, Embryology, Otorhinolaryngology, Cardiology, Pathology, Radiology and Medical Education.</p>
+
+                    <p>A Fulbright scholar recipient, Alex earned his masters in Computer Science from Columbia University. While at Columbia, Alex worked as a researcher at Prof. Allen's Robotics Lab focusing on medical robotics for surgery and brain computer interfaces.</p>
+
+                    <p>As an undergrad, Alex gave numerous invited talks on his research to universities and conferences including the prime minister of Greece and chairman of Microsoft Bill Gates. Parallel to his studies, Alex worked at Microsoft's education division helping universities transition to the cloud and as a technical editor in a computer magazine.</p>
                 </div>
             </div>
-
-        </section>
+        </div>
 
     </div>
     <!-- Content / End -->
@@ -267,7 +856,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-12 mb-5 mb-md-0 text-center text-md-left">
-                        <div data-social-links></div>
+                        <!-- Footer social links removed -->
                     </div>
                     <div class="spread-icons col-md-12 text-center text-md-right">
                         <p class="text-muted mt-3 mb-0">© <span id="current-year"></span> Alexandros Sigaras</p>
@@ -386,11 +975,11 @@
                 };
 
                 const containers = document.querySelectorAll('[data-social-links]');
-                const fragment = document.createDocumentFragment();
 
                 containers.forEach(container => {
                     const filter = (container.getAttribute('data-social-links') || '').trim();
                     const keys = filter ? filter.split(/\s+/) : Object.keys(links);
+                    const isPrimary = container.classList.contains('social-links-primary');
 
                     keys.forEach(key => {
                         const link = links[key];
@@ -400,16 +989,15 @@
                         a.href = link.href;
                         a.target = '_blank';
                         a.rel = 'noopener noreferrer';
-                        a.className = 'btn btn-link';
+                        a.className = isPrimary ? 'social-link primary' : 'social-link';
 
                         const i = document.createElement('i');
-                        i.className = link.icon + ' i-before';
+                        i.className = link.icon;
+                        i.setAttribute('aria-hidden', 'true');
                         a.appendChild(i);
                         a.appendChild(document.createTextNode(link.label));
-                        fragment.appendChild(a);
+                        container.appendChild(a);
                     });
-
-                    container.appendChild(fragment.cloneNode(true));
                 });
 
                 // Set current year
@@ -417,11 +1005,166 @@
                 if (yearEl) yearEl.textContent = new Date().getFullYear();
             }
 
+            // Toggle social links expand/collapse
+            function toggleSocialLinks() {
+                const secondaryLinks = document.querySelector('.social-links-secondary');
+                const expandBtn = document.querySelector('.social-expand-btn');
+
+                if (secondaryLinks && expandBtn) {
+                    const isExpanded = secondaryLinks.classList.contains('expanded');
+
+                    if (isExpanded) {
+                        secondaryLinks.classList.remove('expanded');
+                        expandBtn.classList.remove('expanded');
+                        expandBtn.innerHTML = '<i class="fa fa-chevron-down" aria-hidden="true"></i>';
+                        expandBtn.setAttribute('aria-label', 'Show more links');
+                    } else {
+                        secondaryLinks.classList.add('expanded');
+                        expandBtn.classList.add('expanded');
+                        expandBtn.innerHTML = '<i class="fa fa-chevron-up" aria-hidden="true"></i>';
+                        expandBtn.setAttribute('aria-label', 'Show fewer links');
+                    }
+                }
+            }
+
+            // Toggle footer social links expand/collapse
+            function toggleFooterSocialLinks() {
+                const secondaryLinks = document.querySelector('.footer-secondary');
+                const expandBtn = document.querySelector('.footer-expand');
+
+                if (secondaryLinks && expandBtn) {
+                    const isExpanded = secondaryLinks.classList.contains('expanded');
+
+                    if (isExpanded) {
+                        secondaryLinks.classList.remove('expanded');
+                        expandBtn.classList.remove('expanded');
+                        expandBtn.innerHTML = '<i class="fa fa-chevron-down" aria-hidden="true"></i>';
+                        expandBtn.setAttribute('aria-label', 'Show more links');
+                    } else {
+                        secondaryLinks.classList.add('expanded');
+                        expandBtn.classList.add('expanded');
+                        expandBtn.innerHTML = '<i class="fa fa-chevron-up" aria-hidden="true"></i>';
+                        expandBtn.setAttribute('aria-label', 'Show fewer links');
+                    }
+                }
+            }
+
+            // Toggle bio expand/collapse
+            function toggleBio() {
+                const bioOverlay = document.getElementById('bio-overlay');
+                const bioButton = document.querySelector('.bio-button');
+
+                if (bioOverlay && bioButton) {
+                    const isActive = bioOverlay.classList.contains('active');
+
+                    if (isActive) {
+                        // Close bio
+                        bioOverlay.classList.remove('active');
+                        bioButton.classList.remove('expanded');
+                        bioButton.innerHTML = 'Short Bio<i class="fa fa-chevron-down" aria-hidden="true"></i>';
+                        bioButton.setAttribute('aria-label', 'Show short bio');
+                        document.body.style.overflow = 'auto';
+                    } else {
+                        // Open bio
+                        bioOverlay.classList.add('active');
+                        bioButton.classList.add('expanded');
+                        bioButton.innerHTML = 'Hide Bio<i class="fa fa-chevron-up" aria-hidden="true"></i>';
+                        bioButton.setAttribute('aria-label', 'Hide short bio');
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+            }
+
+            // Portrait image cross-fade functionality
+            function initPortraitCrossFade() {
+                const portrait1 = document.getElementById('portrait-1');
+                const portrait2 = document.getElementById('portrait-2');
+
+                if (!portrait1 || !portrait2) return;
+
+                let currentImage = Math.random() < 0.5 ? 1 : 2; // Random start
+
+                // Set initial active image
+                if (currentImage === 1) {
+                    portrait1.classList.add('active');
+                } else {
+                    portrait2.classList.add('active');
+                }
+
+                // Cross-fade every 10 seconds
+                setInterval(() => {
+                    if (currentImage === 1) {
+                        portrait1.classList.remove('active');
+                        portrait2.classList.add('active');
+                        currentImage = 2;
+                    } else {
+                        portrait2.classList.remove('active');
+                        portrait1.classList.add('active');
+                        currentImage = 1;
+                    }
+                }, 10000);
+            }
+
+            // Copy bio text functionality
+            function copyBioText() {
+                const bioContent = document.getElementById('bio-text-content');
+                const copyBtn = document.querySelector('.bio-copy-btn');
+                const tooltip = document.getElementById('copy-tooltip');
+
+                if (bioContent) {
+                    // Extract text content from the bio section
+                    const bioText = bioContent.innerText.trim();
+
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(bioText).then(() => {
+                        // Show success feedback
+                        copyBtn.classList.add('copied');
+                        tooltip.classList.add('show');
+
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            tooltip.classList.remove('show');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                        // Fallback for older browsers
+                        const textArea = document.createElement('textarea');
+                        textArea.value = bioText;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+
+                        // Show success feedback
+                        copyBtn.classList.add('copied');
+                        tooltip.classList.add('show');
+
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            tooltip.classList.remove('show');
+                        }, 2000);
+                    });
+                }
+            }
+
+            // Make functions globally accessible
+            window.toggleSocialLinks = toggleSocialLinks;
+            window.toggleFooterSocialLinks = toggleFooterSocialLinks;
+            window.toggleBio = toggleBio;
+            window.copyBioText = copyBioText;
+
             // Use requestIdleCallback if available, otherwise fallback to setTimeout
             if ('requestIdleCallback' in window) {
-                requestIdleCallback(initSocialLinks);
+                requestIdleCallback(() => {
+                    initSocialLinks();
+                    initPortraitCrossFade();
+                });
             } else {
-                setTimeout(initSocialLinks, 1);
+                setTimeout(() => {
+                    initSocialLinks();
+                    initPortraitCrossFade();
+                }, 1);
             }
         })();
     </script>
