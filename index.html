@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="assets/img/favicon.png">
@@ -238,6 +239,7 @@
     <!-- <script src="assets/plugins/jquery/dist/jquery.min.js"></script> -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" crossorigin="anonymous"></script>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" as="script" crossorigin="anonymous">
 
     <script defer src="assets/plugins/jquery.appear/jquery.appear.js"></script>
 
@@ -264,44 +266,71 @@
     <!-- JS Core -->
     <script defer src="assets/js/core.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var links = {
-                "cv": { "label": "CV", "href": "cv.pdf", "icon": "far fa-file-pdf" },
-                "linkedin": { "label": "LinkedIn", "href": "https://www.linkedin.com/in/AlexSigaras", "icon": "fab fa-linkedin-in" },
-                "x": { "label": "X", "href": "https://twitter.com/AlexSigaras", "icon": "fab fa-twitter-x" },
-                "google_scholar": { "label": "Google Scholar", "href": "https://scholar.google.com/citations?user=LupDxKUAAAAJ&hl=en&oi=ao", "icon": "ai ai-google-scholar" },
-                "orcid": { "label": "ORCID", "href": "https://orcid.org/0000-0002-7607-559X", "icon": "ai ai-orcid" },
-                "pubmed": { "label": "PubMed", "href": "https://www.ncbi.nlm.nih.gov/myncbi/alexandros.sigaras.1/bibliography/public/", "icon": "ai ai-pubmed" },
-                "nih_reporter": { "label": "NIH Reporter", "href": "https://reporter.nih.gov/search/wLwxNPurzE2RuuqxhvwP9w/projects", "icon": "fa fa-list" },
-                "web_of_science": { "label": "Web of Science", "href": "https://www.webofscience.com/wos/author/record/K-3037-2015", "icon": "ai ai-clarivate" },
-                "semantic_scholar": { "label": "Semantic Scholar", "href": "https://www.semanticscholar.org/author/Alexandros-Sigaras/2835550", "icon": "ai ai-semantic-scholar" },
-                "github": { "label": "Github", "href": "https://github.com/alexsigaras", "icon": "fab fa-github" }
-            };
-            document.querySelectorAll('[data-social-links]').forEach(function (container) {
-                var filter = (container.getAttribute('data-social-links') || '').trim();
-                var keys = filter ? filter.split(/\s+/) : Object.keys(links);
-                keys.forEach(function (key) {
-                    var link = links[key];
-                    if (!link) return;
-                    var a = document.createElement('a');
-                    a.href = link.href;
-                    a.target = '_blank';
-                    a.rel = 'noopener noreferrer';
-                    a.className = 'btn btn-link';
-                    var i = document.createElement('i');
-                    i.className = link.icon + ' i-before';
-                    a.appendChild(i);
-                    a.appendChild(document.createTextNode(link.label));
-                    container.appendChild(a);
+        // Optimize social links generation
+        (function() {
+            'use strict';
+
+            function initSocialLinks() {
+                const links = {
+                    cv: { label: "CV", href: "cv.pdf", icon: "far fa-file-pdf" },
+                    linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/AlexSigaras", icon: "fab fa-linkedin-in" },
+                    x: { label: "X", href: "https://twitter.com/AlexSigaras", icon: "fab fa-twitter-x" },
+                    google_scholar: { label: "Google Scholar", href: "https://scholar.google.com/citations?user=LupDxKUAAAAJ&hl=en&oi=ao", icon: "ai ai-google-scholar" },
+                    orcid: { label: "ORCID", href: "https://orcid.org/0000-0002-7607-559X", icon: "ai ai-orcid" },
+                    pubmed: { label: "PubMed", href: "https://www.ncbi.nlm.nih.gov/myncbi/alexandros.sigaras.1/bibliography/public/", icon: "ai ai-pubmed" },
+                    nih_reporter: { label: "NIH Reporter", href: "https://reporter.nih.gov/search/wLwxNPurzE2RuuqxhvwP9w/projects", icon: "fa fa-list" },
+                    web_of_science: { label: "Web of Science", href: "https://www.webofscience.com/wos/author/record/K-3037-2015", icon: "ai ai-clarivate" },
+                    semantic_scholar: { label: "Semantic Scholar", href: "https://www.semanticscholar.org/author/Alexandros-Sigaras/2835550", icon: "ai ai-semantic-scholar" },
+                    github: { label: "Github", href: "https://github.com/alexsigaras", icon: "fab fa-github" }
+                };
+
+                const containers = document.querySelectorAll('[data-social-links]');
+                const fragment = document.createDocumentFragment();
+
+                containers.forEach(container => {
+                    const filter = (container.getAttribute('data-social-links') || '').trim();
+                    const keys = filter ? filter.split(/\s+/) : Object.keys(links);
+
+                    keys.forEach(key => {
+                        const link = links[key];
+                        if (!link) return;
+
+                        const a = document.createElement('a');
+                        a.href = link.href;
+                        a.target = '_blank';
+                        a.rel = 'noopener noreferrer';
+                        a.className = 'btn btn-link';
+
+                        const i = document.createElement('i');
+                        i.className = link.icon + ' i-before';
+                        a.appendChild(i);
+                        a.appendChild(document.createTextNode(link.label));
+                        fragment.appendChild(a);
+                    });
+
+                    container.appendChild(fragment.cloneNode(true));
                 });
-            });
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-        });
+
+                // Set current year
+                const yearEl = document.getElementById('current-year');
+                if (yearEl) yearEl.textContent = new Date().getFullYear();
+            }
+
+            // Use requestIdleCallback if available, otherwise fallback to setTimeout
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(initSocialLinks);
+            } else {
+                setTimeout(initSocialLinks, 1);
+            }
+        })();
     </script>
 
-    <!-- Google Analytics -->
+    <!-- Google Analytics - Optimized -->
     <script>
-        window.addEventListener('load', function () {
+        // Delay GA loading until user interaction or 3 seconds
+        function loadGA() {
+            if (window.gaLoaded) return;
+            window.gaLoaded = true;
             var gtagScript = document.createElement('script');
             gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=UA-13280027-1';
             gtagScript.async = true;
@@ -310,7 +339,52 @@
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'UA-13280027-1');
+        }
+
+        // Load on user interaction
+        ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(function(event) {
+            document.addEventListener(event, loadGA, {once: true, passive: true});
         });
+
+        // Fallback: load after 3 seconds
+        setTimeout(loadGA, 3000);
+    </script>
+
+    <!-- Performance Monitoring -->
+    <script>
+        // Core Web Vitals monitoring
+        function sendToAnalytics(metric) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', metric.name, {
+                    event_category: 'Web Vitals',
+                    event_label: metric.id,
+                    value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+                    non_interaction: true
+                });
+            }
+        }
+
+        // Load web-vitals library and measure
+        function loadWebVitals() {
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(() => {
+                    import('https://unpkg.com/web-vitals@3/dist/web-vitals.js').then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
+                        onCLS(sendToAnalytics);
+                        onFID(sendToAnalytics);
+                        onFCP(sendToAnalytics);
+                        onLCP(sendToAnalytics);
+                        onTTFB(sendToAnalytics);
+                    });
+                });
+            }
+        }
+
+        // Load after page is interactive
+        if (document.readyState === 'complete') {
+            setTimeout(loadWebVitals, 1000);
+        } else {
+            window.addEventListener('load', () => setTimeout(loadWebVitals, 1000));
+        }
     </script>
 
     <!-- Retainable/Medium -->
