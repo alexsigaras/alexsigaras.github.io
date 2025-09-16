@@ -36,7 +36,6 @@
     <meta name="twitter:description" content="Personal website of Alex Sigaras, Assistant Professor of Research in Systems and Computational Biomedicine, featuring research, CV, and contact information.">
     <meta name="twitter:image" content="https://alexsigaras.github.io/assets/img/photos/Alex Sigaras 1.webp">
     <link rel="preload" as="image" href="assets/img/photos/Alex Sigaras 1.webp" fetchpriority="high" />
-    <link rel="preload" as="image" href="assets/img/photos/Alex Sigaras 2.webp" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,7 +95,7 @@
         .hero-portrait {
             display: flex;
             align-items: center;
-            min-height: 100vh;
+            min-height: 90vh;
             padding: 2rem 0;
         }
         .portrait-image {
@@ -107,9 +106,6 @@
             align-items: center;
             padding-right: 3rem;
         }
-        .portrait-image {
-            position: relative;
-        }
         .portrait-image img {
             width: 100%;
             max-width: 400px;
@@ -117,24 +113,9 @@
             border-radius: 8px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 2s ease-in-out, transform 0.3s ease;
-        }
-        .portrait-image img.active {
-            opacity: 1;
         }
         .portrait-image img:hover {
             transform: scale(1.02);
-        }
-        .portrait-image::before {
-            content: '';
-            display: block;
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 2/3;
         }
         .portrait-content {
             flex: 0 0 60%;
@@ -286,6 +267,21 @@
         .footer-social {
             margin: 0;
         }
+        /* Footer height reduction */
+        #footer {
+            padding: 0.5rem 0;
+        }
+        #footer .footer-content {
+            padding: 0;
+        }
+        #footer .col-md-12 {
+            margin-bottom: 0;
+        }
+        #footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
         .footer-social .social-link {
             background: rgba(255, 255, 255, 0.08);
             color: #fff;
@@ -311,7 +307,7 @@
 
         /* Bio Expandable Styles */
         .bio-container {
-            margin-top: 2rem;
+            margin-top: 0.5rem;
             transition: all 0.4s ease;
         }
         .bio-button {
@@ -412,9 +408,9 @@
         .bio-buttons-container {
             display: flex;
             justify-content: flex-end;
-            gap: 0.5rem;
+            gap: 0.25rem;
             margin-bottom: 1.5rem;
-            padding-top: 1rem;
+            padding-top: 0.5rem;
         }
         .bio-close {
             background: rgba(255, 255, 255, 0.1);
@@ -666,16 +662,8 @@
                 align-items: center;
                 width: 100%;
             }
-            .portrait-image::before {
-                max-width: 300px;
-                margin: 0 auto;
-            }
             .portrait-image img {
                 max-width: 300px;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
             }
             .portrait-content {
                 flex: none;
@@ -692,15 +680,8 @@
         @media (max-width: 767px) {
             .display-3 { font-size: 2.5rem; }
             .hero-portrait { padding: 2rem 0; }
-            .portrait-image::before {
-                max-width: 250px;
-                margin: 0 auto;
-            }
             .portrait-image img {
                 max-width: 250px;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
             }
             .navigation-panel #navigation-toggle { top: 30px; right: 30px; }
         }
@@ -756,16 +737,10 @@
                 <div class="container">
                     <div class="hero-portrait">
                         <!-- Portrait Image -->
-                        <div class="portrait-image" id="portrait-container">
-                            <img id="portrait-1" src="assets/img/photos/Alex Sigaras 1.webp"
+                        <div class="portrait-image">
+                            <img src="assets/img/photos/Alex Sigaras 1.webp"
                                  alt="Portrait of Alex Sigaras"
                                  fetchpriority="high"
-                                 decoding="sync"
-                                 width="400"
-                                 height="600">
-                            <img id="portrait-2" src="assets/img/photos/Alex Sigaras 2.webp"
-                                 alt="Portrait of Alex Sigaras"
-                                 loading="eager"
                                  decoding="sync"
                                  width="400"
                                  height="600">
@@ -775,13 +750,13 @@
                         <div class="portrait-content">
                             <h1 class="display-3 mb-1">Alex Sigaras</h1>
                             <h2 class="mb-2 text-muted" style="font-size: 1.2rem; font-weight: 400;">
-                                <span class="typing">Assistant Professor of Research in Systems and Computational Biomedicine</span>
+                                Assistant Professor of Research in Systems and Computational Biomedicine
                             </h2>
                             <h3 class="mb-2 text-muted" style="font-size: 1.2rem; font-weight: 400;">
-                                <span class="typing">Director of AI & XR, Englander Institute for Precision Medicine</span>
+                                Director of AI & XR, Englander Institute for Precision Medicine
                             </h3>
                             <h4 class="mb-4 text-muted" style="font-size: 1.1rem; font-weight: 300;">
-                                <span class="typing">Weill Cornell Medicine</span>
+                                Weill Cornell Medicine
                             </h4>
                             <div class="social-links-container">
                                 <!-- Primary social links with More button inline -->
@@ -855,11 +830,8 @@
         <div class="footer-content">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-12 mb-5 mb-md-0 text-center text-md-left">
-                        <!-- Footer social links removed -->
-                    </div>
-                    <div class="spread-icons col-md-12 text-center text-md-right">
-                        <p class="text-muted mt-3 mb-0">© <span id="current-year"></span> Alexandros Sigaras</p>
+                    <div class="col-md-12 text-center">
+                        <p class="text-muted">© <span id="current-year"></span> Alexandros Sigaras</p>
                     </div>
                 </div>
             </div>
@@ -1075,35 +1047,6 @@
                 }
             }
 
-            // Portrait image cross-fade functionality
-            function initPortraitCrossFade() {
-                const portrait1 = document.getElementById('portrait-1');
-                const portrait2 = document.getElementById('portrait-2');
-
-                if (!portrait1 || !portrait2) return;
-
-                let currentImage = Math.random() < 0.5 ? 1 : 2; // Random start
-
-                // Set initial active image
-                if (currentImage === 1) {
-                    portrait1.classList.add('active');
-                } else {
-                    portrait2.classList.add('active');
-                }
-
-                // Cross-fade every 10 seconds
-                setInterval(() => {
-                    if (currentImage === 1) {
-                        portrait1.classList.remove('active');
-                        portrait2.classList.add('active');
-                        currentImage = 2;
-                    } else {
-                        portrait2.classList.remove('active');
-                        portrait1.classList.add('active');
-                        currentImage = 1;
-                    }
-                }, 10000);
-            }
 
             // Copy bio text functionality
             function copyBioText() {
@@ -1156,15 +1099,9 @@
 
             // Use requestIdleCallback if available, otherwise fallback to setTimeout
             if ('requestIdleCallback' in window) {
-                requestIdleCallback(() => {
-                    initSocialLinks();
-                    initPortraitCrossFade();
-                });
+                requestIdleCallback(initSocialLinks);
             } else {
-                setTimeout(() => {
-                    initSocialLinks();
-                    initPortraitCrossFade();
-                }, 1);
+                setTimeout(initSocialLinks, 1);
             }
         })();
     </script>
