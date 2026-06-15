@@ -50,6 +50,11 @@
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.6/css/academicons.min.css" as="style" onload="this.rel='stylesheet'" integrity="sha384-IAnhEDrYZnLsYcVzowpizdxXTHFovW5/CkZObGfY2QuaCKaQpvLCjj45LGb4Q/yE" crossorigin="anonymous">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.6/css/academicons.min.css" integrity="sha384-IAnhEDrYZnLsYcVzowpizdxXTHFovW5/CkZObGfY2QuaCKaQpvLCjj45LGb4Q/yE" crossorigin="anonymous" /></noscript>
 
+    <!-- Three.js (ESM via CDN import map — no build step) for the hero point cloud -->
+    <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.min.js" } }
+    </script>
+
     <style>
         /* ============================================================= */
         /* Design tokens                                                 */
@@ -203,17 +208,16 @@
         /* ============================================================= */
         /* Hero                                                          */
         /* ============================================================= */
-        .hero { padding: clamp(40px, 7vw, 88px) 0 clamp(48px, 7vw, 92px); }
-        .hero-kicker {
-            font-family: "JetBrains Mono", monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .16em;
-            color: var(--ink-3); padding-bottom: 1.4rem; margin-bottom: 1.8rem; border-bottom: 1px solid var(--rule);
-        }
+        .hero { position: relative; padding: clamp(40px, 7vw, 88px) 0 clamp(48px, 7vw, 92px); }
+        .hero > .wrap { position: relative; z-index: 1; }
+        .hero-field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.4s ease; }
+        .hero-field.in { opacity: 1; }
         .hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
         .hero-name { font-size: clamp(3rem, 8.5vw, 6rem); font-weight: 500; line-height: .98; letter-spacing: -0.02em; }
-        .hero-roles { margin-top: 1.6rem; display: flex; flex-direction: column; gap: .35rem; }
-        .hero-roles .r1 { font-size: 1.18rem; font-weight: 500; color: var(--ink); }
-        .hero-roles .r2 { font-size: 1.05rem; color: var(--ink-2); }
-        .hero-roles .r3 { font-size: .95rem; color: var(--ink-3); font-family: "JetBrains Mono", monospace; letter-spacing: .03em; margin-top: .25rem; }
+        .hero-roles { margin-top: 1.7rem; display: flex; flex-direction: column; gap: .3rem; }
+        .r-title { font-size: 1.12rem; font-weight: 500; color: var(--ink); line-height: 1.35; }
+        .r-inst { font-size: .95rem; color: var(--ink-2); margin-top: .5rem; }
+        .hero-roles .r3 { font-size: .9rem; color: var(--ink-3); font-family: "JetBrains Mono", monospace; letter-spacing: .03em; margin-top: .7rem; }
         .hero-actions { margin-top: 1.9rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1.4rem; }
         .text-link {
             display: inline-flex; align-items: center; gap: .4rem; color: var(--accent); font-weight: 500; font-size: 1rem;
@@ -239,11 +243,11 @@
         .stat-tile .n { font-family: "JetBrains Mono", monospace; font-size: 1.5rem; font-weight: 500; color: var(--ink); display: block; line-height: 1; }
         .stat-tile .l { font-size: .74rem; color: var(--ink-3); margin-top: .45rem; display: block; text-transform: uppercase; letter-spacing: .06em; }
 
-        .portrait { position: relative; }
+        .portrait { position: relative; perspective: 900px; }
         .portrait img {
             width: 100%; max-width: 400px; height: auto; border-radius: 8px;
             box-shadow: 0 18px 40px rgba(0, 0, 0, .22);
-            transition: transform .3s ease;
+            transition: transform .35s ease;
         }
         .portrait img:hover { transform: scale(1.02); }
         [data-theme="dark"] .portrait img { box-shadow: 0 18px 44px rgba(0, 0, 0, .55); }
@@ -412,7 +416,7 @@
         /* ============================================================= */
         @media (max-width: 920px) {
             .hero-grid { grid-template-columns: 1fr; }
-            .portrait { order: -1; max-width: 320px; }
+            .portrait { order: -1; max-width: 320px; justify-self: center; }
             .sec-grid, .contact-grid { grid-template-columns: 1fr; }
             .folio { position: static; display: flex; align-items: center; gap: 1rem; }
             .folio-rule { margin: 0; }
@@ -478,14 +482,15 @@
     <main id="main">
         <!-- Hero -->
         <section id="home" class="hero" data-section="home">
+            <canvas id="hero-field" class="hero-field" aria-hidden="true"></canvas>
             <div class="wrap">
-                <div class="hero-kicker">Alexandros Sigaras · Weill Cornell Medicine · New York</div>
                 <div class="hero-grid">
                     <div>
                         <h1 class="hero-name">Alexandros<br>Sigaras</h1>
                         <div class="hero-roles">
-                            <span class="r1">Assistant Professor of Research in Systems &amp; Computational Biomedicine</span>
-                            <span class="r2">Director of AI &amp; XR · Englander Institute for Precision Medicine</span>
+                            <span class="r-title">Assistant Professor of Research in Systems &amp; Computational Biomedicine</span>
+                            <span class="r-title">Director of AI &amp; XR, Englander Institute for Precision Medicine</span>
+                            <span class="r-inst">Weill Cornell Medicine</span>
                             <span class="r3">Precision Oncology · Multimodal AI · Extended Reality</span>
                         </div>
                         <div class="hero-actions">
@@ -1065,6 +1070,23 @@
             });
         }
 
+        /* ===================== Portrait 3D tilt ===================== */
+        function initTilt() {
+            if (REDUCE) return;
+            if (!(window.matchMedia && window.matchMedia('(pointer: fine)').matches)) return;
+            var wrap = document.querySelector('.portrait');
+            var img = wrap && wrap.querySelector('img');
+            if (!img) return;
+            var MAX = 6;
+            wrap.addEventListener('pointermove', function (e) {
+                var r = wrap.getBoundingClientRect();
+                var px = (e.clientX - r.left) / r.width - 0.5;
+                var py = (e.clientY - r.top) / r.height - 0.5;
+                img.style.transform = 'rotateY(' + (px * MAX).toFixed(2) + 'deg) rotateX(' + (-py * MAX).toFixed(2) + 'deg) scale(1.02)';
+            });
+            wrap.addEventListener('pointerleave', function () { img.style.transform = ''; });
+        }
+
         /* ===================== Mobile nav + bio ===================== */
         function initNavToggle() {
             var btn = document.getElementById('nav-toggle');
@@ -1117,10 +1139,158 @@
             renderSocial(document.getElementById('foot-social'), FOOT_ORDER, false);
             var yEl = document.getElementById('year'); if (yEl) yEl.textContent = new Date().getFullYear();
             initPubs(); initPress(); initTalks();
-            initSpy(); initTheme(); initNavToggle(); initCopy();
+            initSpy(); initTheme(); initNavToggle(); initCopy(); initTilt();
         }
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
         else boot();
+    })();
+    </script>
+
+    <!-- Hero deep-field point cloud (Three.js via import map; deferred + motion/perf-gated) -->
+    <script type="module">
+    (function () {
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var conn = navigator.connection;
+        if (conn && (conn.saveData || /(^|[\s-])2g$/.test(conn.effectiveType || ''))) return;
+        var canvas = document.getElementById('hero-field');
+        var home = document.getElementById('home');
+        if (!canvas || !home) return;
+        try {
+            var probe = document.createElement('canvas');
+            if (!(window.WebGLRenderingContext && (probe.getContext('webgl') || probe.getContext('experimental-webgl')))) return;
+        } catch (e) { return; }
+
+        var started = false;
+        function kick() {
+            var io = new IntersectionObserver(function (es) {
+                es.forEach(function (e) { if (e.isIntersecting && !started) { started = true; io.disconnect(); start3D(); } });
+            }, { threshold: 0.01 });
+            io.observe(home);
+        }
+        var defer = window.requestIdleCallback || function (f) { return setTimeout(f, 1); };
+        if (document.readyState === 'complete') defer(kick);
+        else window.addEventListener('load', function () { defer(kick); });
+
+        async function start3D() {
+            var THREE;
+            try { THREE = await import('three'); } catch (e) { return; }
+
+            var mobile = window.matchMedia('(max-width: 760px)').matches;
+            var mid = window.matchMedia('(max-width: 1100px)').matches;
+            function dpr() { return Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2); }
+
+            var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: false, powerPreference: 'high-performance', stencil: false, depth: false });
+            renderer.setClearColor(0x000000, 0);
+            renderer.setPixelRatio(dpr());
+
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera(58, 1, 0.1, 100);
+            camera.position.z = 15;
+
+            var COUNT = mobile ? 6000 : (mid ? 12000 : 20000);
+            var pos = new Float32Array(COUNT * 3), rnd = new Float32Array(COUNT), acc = new Float32Array(COUNT), siz = new Float32Array(COUNT);
+            var accentStep = Math.max(1, Math.floor(COUNT / 36));
+            for (var i = 0; i < COUNT; i++) {
+                pos[i * 3]     = (Math.random() * 2 - 1) * 17;
+                pos[i * 3 + 1] = (Math.random() * 2 - 1) * 11;
+                pos[i * 3 + 2] = (Math.random() * 2 - 1) * 11 - 2;
+                rnd[i] = Math.random();
+                siz[i] = Math.random() * 0.6 + 0.45;
+                acc[i] = (i % accentStep === 0) ? 1 : 0;
+            }
+            var geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+            geo.setAttribute('aRand', new THREE.BufferAttribute(rnd, 1));
+            geo.setAttribute('aAccent', new THREE.BufferAttribute(acc, 1));
+            geo.setAttribute('aSize', new THREE.BufferAttribute(siz, 1));
+
+            function colors() {
+                var cs = getComputedStyle(document.documentElement);
+                var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+                return {
+                    field: (cs.getPropertyValue('--blue') || '#13427A').trim(),
+                    accent: (cs.getPropertyValue('--accent') || '#A4191B').trim(),
+                    opacity: dark ? 0.55 : 0.34
+                };
+            }
+            var c0 = colors();
+
+            var mat = new THREE.ShaderMaterial({
+                transparent: true, depthTest: false, depthWrite: false, blending: THREE.NormalBlending,
+                uniforms: {
+                    uTime: { value: 0 }, uPR: { value: dpr() }, uOpacity: { value: c0.opacity },
+                    uField: { value: new THREE.Color(c0.field) }, uAccent: { value: new THREE.Color(c0.accent) }
+                },
+                vertexShader: [
+                    'attribute float aRand; attribute float aAccent; attribute float aSize;',
+                    'uniform float uTime; uniform float uPR;',
+                    'varying float vAccent; varying float vDepth;',
+                    'void main(){',
+                    '  vAccent = aAccent;',
+                    '  vec3 p = position;',
+                    '  float t = uTime * 0.04;',
+                    '  p.x += sin(t + aRand * 6.2831) * 0.6;',
+                    '  p.y += cos(t * 0.9 + aRand * 6.2831) * 0.45;',
+                    '  p.z += sin(t * 0.7 + aRand * 12.566) * 0.6;',
+                    '  vec4 mv = modelViewMatrix * vec4(p, 1.0);',
+                    '  vDepth = -mv.z;',
+                    '  gl_Position = projectionMatrix * mv;',
+                    '  float s = aSize * (aAccent > 0.5 ? 2.3 : 1.5);',
+                    '  gl_PointSize = min(s * uPR * (24.0 / -mv.z), 13.0 * uPR);',
+                    '}'
+                ].join('\n'),
+                fragmentShader: [
+                    'precision mediump float;',
+                    'uniform vec3 uField; uniform vec3 uAccent; uniform float uOpacity;',
+                    'varying float vAccent; varying float vDepth;',
+                    'void main(){',
+                    '  vec2 cc = gl_PointCoord - 0.5;',
+                    '  float d = length(cc);',
+                    '  if (d > 0.5) discard;',
+                    '  float a = smoothstep(0.5, 0.08, d);',
+                    '  float fade = clamp((24.0 - vDepth) / 20.0, 0.0, 1.0);',
+                    '  vec3 col = mix(uField, uAccent, vAccent);',
+                    '  gl_FragColor = vec4(col, a * fade * uOpacity);',
+                    '}'
+                ].join('\n')
+            });
+
+            var points = new THREE.Points(geo, mat);
+            scene.add(points);
+
+            function resize() {
+                var w = canvas.clientWidth || home.clientWidth, h = canvas.clientHeight || home.clientHeight;
+                if (!w || !h) return;
+                renderer.setPixelRatio(dpr());
+                renderer.setSize(w, h, false);
+                camera.aspect = w / h; camera.updateProjectionMatrix();
+                mat.uniforms.uPR.value = dpr();
+            }
+            resize();
+
+            var mo = new MutationObserver(function () {
+                var c = colors();
+                mat.uniforms.uField.value.set(c.field);
+                mat.uniforms.uAccent.value.set(c.accent);
+                mat.uniforms.uOpacity.value = c.opacity;
+            });
+            mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+            var clock = new THREE.Clock(), running = false, raf = 0;
+            function frame() { mat.uniforms.uTime.value = clock.getElapsedTime(); renderer.render(scene, camera); raf = requestAnimationFrame(frame); }
+            function play() { if (!running) { running = true; clock.start(); raf = requestAnimationFrame(frame); } }
+            function pause() { if (running) { running = false; cancelAnimationFrame(raf); } }
+
+            document.addEventListener('visibilitychange', function () { document.hidden ? pause() : play(); });
+            var vis = new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? play() : pause(); }); }, { threshold: 0 });
+            vis.observe(home);
+            var rt;
+            window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(resize, 200); });
+
+            renderer.render(scene, camera);
+            canvas.classList.add('in');
+            play();
+        }
     })();
     </script>
 
