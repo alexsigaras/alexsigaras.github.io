@@ -60,10 +60,7 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
         integrity="sha384-MUdXdzn1OB/0zkr4yGLnCqZ/n9ut5N7Ifes9RP2d5xKsTtcPiuiwthWczWuiqFOn" crossorigin="anonymous" /></noscript>
 
-    <!-- CSS Icons -->
-     <link rel="preload" href="assets/css/themify-icons.min.css" as="style" onload="this.rel='stylesheet'">
-     <noscript><link rel="stylesheet" href="assets/css/themify-icons.min.css" /></noscript>
-     <link rel="preload" href="assets/fonts/themify.woff" as="font" type="font/woff" crossorigin />
+    <!-- CSS Icons (Font Awesome + Academicons; Themify removed — no ti-* icons are used) -->
      <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.6/css/academicons.min.css" as="style" onload="this.rel='stylesheet'" integrity="sha384-IAnhEDrYZnLsYcVzowpizdxXTHFovW5/CkZObGfY2QuaCKaQpvLCjj45LGb4Q/yE" crossorigin="anonymous">
      <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.6/css/academicons.min.css" integrity="sha384-IAnhEDrYZnLsYcVzowpizdxXTHFovW5/CkZObGfY2QuaCKaQpvLCjj45LGb4Q/yE" crossorigin="anonymous" /></noscript>
 
@@ -692,6 +689,9 @@
 
     <!-- Content Sections CSS (Publications / Press / Talks) -->
     <style>
+        /* Modal close "×" glyph: render with a normal font so it no longer depends on the (removed) Themify icon font */
+        .close::after { font-family: inherit !important; content: "\00D7" !important; }
+
         /* ---- Shared section shell ---- */
         .content-section {
             position: relative;

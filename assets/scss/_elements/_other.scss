@@ -61,8 +61,8 @@ hr.sep-line {
     @include transition-primary;
 
     &:after {
-        font-family: themify;
-        content: "\e646";
+        // Plain "×" so the close glyph no longer depends on the (removed) Themify icon font
+        content: "\00D7";
     }
 
     &:hover, &:focus, &:active, &:focus:active {
