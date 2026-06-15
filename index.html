@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1" />
      <meta name="theme-color" content="#B31B1B" />
-     <meta name="description" content="Personal website of Alex Sigaras, Assistant Professor of Research in Systems and Computational Biomedicine, featuring research, CV, and contact information." />
+     <meta name="description" content="Personal website of Alex Sigaras, Assistant Professor of Research in Systems and Computational Biomedicine, featuring his publications, press coverage, talks, research, and CV." />
 
     <!-- Preconnects -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -28,12 +28,12 @@
     <title>Alex Sigaras - Assistant Professor of Research in Systems and Computational Biomedicine</title>
     <link rel="canonical" href="https://alexsigaras.github.io/">
     <meta property="og:title" content="Alex Sigaras - Assistant Professor of Research in Systems and Computational Biomedicine">
-    <meta property="og:description" content="Personal website of Alex Sigaras, Assistant Professor of Research in Systems and Computational Biomedicine, featuring research, CV, and contact information.">
+    <meta property="og:description" content="Personal website of Alex Sigaras, Assistant Professor of Research in Systems and Computational Biomedicine, featuring his publications, press coverage, talks, research, and CV.">
     <meta property="og:image" content="https://alexsigaras.github.io/assets/img/photos/Alex Sigaras 1.webp">
     <meta property="og:url" content="https://alexsigaras.github.io/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Alex Sigaras - Assistant Professor of Research in Systems and Computational Biomedicine">
-    <meta name="twitter:description" content="Personal website of Alex Sigaras, Assistant Professor of Research in Systems and Computational Biomedicine, featuring research, CV, and contact information.">
+    <meta name="twitter:description" content="Personal website of Alex Sigaras, Assistant Professor of Research in Systems and Computational Biomedicine, featuring his publications, press coverage, talks, research, and CV.">
     <meta name="twitter:image" content="https://alexsigaras.github.io/assets/img/photos/Alex Sigaras 1.webp">
     <link rel="preload" as="image" href="assets/img/photos/Alex Sigaras 1.webp" fetchpriority="high" />
 
@@ -690,6 +690,257 @@
         }
     </style>
 
+    <!-- Content Sections CSS (Publications / Press / Talks) -->
+    <style>
+        /* ---- Shared section shell ---- */
+        .content-section {
+            position: relative;
+            padding: 6rem 0;
+            background-color: #2b2b2b;
+            color: #e9e9e9;
+            scroll-margin-top: 0;
+        }
+        .content-section.cs-alt { background-color: #232323; }
+        .content-section .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+        /* ---- Section header ---- */
+        .cs-header { text-align: center; max-width: 720px; margin: 0 auto 2.75rem; }
+        .cs-eyebrow {
+            display: inline-block;
+            color: #ff8a8a;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .cs-title {
+            font-family: Poppins, sans-serif;
+            font-size: 2.6rem;
+            font-weight: 600;
+            line-height: 1.15;
+            color: #ffffff;
+            margin: 0 0 0.85rem;
+        }
+        .cs-sub { color: #bdbdbd; font-size: 1.02rem; font-weight: 300; margin: 0; }
+        .cs-count { font-weight: 600; color: #ff8a8a; }
+
+        /* ---- Controls: filter tabs + search ---- */
+        .cs-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.25rem;
+        }
+        .cs-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem; }
+        .cs-tab {
+            font-family: Poppins, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 400;
+            color: #d8d8d8;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 30px;
+            padding: 0.5rem 1.15rem;
+            cursor: pointer;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .cs-tab:hover { background: rgba(179, 27, 27, 0.18); border-color: rgba(179, 27, 27, 0.45); color: #fff; }
+        .cs-tab.active { background: #b31b1b; border-color: #b31b1b; color: #fff; font-weight: 500; }
+        .cs-tab .cs-tab-n { opacity: 0.7; font-size: 0.8em; margin-left: 0.35rem; }
+        .cs-tab:focus-visible, .cs-link:focus-visible, .cs-search input:focus-visible {
+            outline: 2px solid #ff8a8a;
+            outline-offset: 2px;
+        }
+
+        .cs-search {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+        }
+        .cs-search i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9a9a9a;
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+        .cs-search input {
+            width: 100%;
+            font-family: Poppins, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 30px;
+            padding: 0.7rem 1rem 0.7rem 2.6rem;
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+        .cs-search input::placeholder { color: #ababab; }
+        .cs-search input:focus { border-color: rgba(179, 27, 27, 0.6); background: rgba(255, 255, 255, 0.09); }
+
+        /* ---- Glass list/card primitives ---- */
+        .cs-card {
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cs-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(179, 27, 27, 0.55);
+            background: rgba(255, 255, 255, 0.065);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* ---- Publications ---- */
+        .pub-list { display: flex; flex-direction: column; gap: 0.9rem; }
+        .pub-card { display: flex; gap: 1.25rem; padding: 1.4rem 1.6rem; }
+        .pub-aside {
+            flex: 0 0 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.45rem;
+            padding-top: 0.15rem;
+        }
+        .pub-year {
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.01em;
+        }
+        .pub-tag {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            padding: 0.18rem 0.5rem;
+            border-radius: 20px;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+        .pub-tag.t-journal { color: #ffb3b3; background: rgba(179, 27, 27, 0.22); border-color: rgba(179, 27, 27, 0.4); }
+        .pub-tag.t-conference { color: #b9d4ff; background: rgba(45, 99, 160, 0.22); border-color: rgba(80, 140, 220, 0.4); }
+        .pub-tag.t-abstract { color: #ffe0a8; background: rgba(180, 130, 30, 0.2); border-color: rgba(190, 150, 60, 0.4); }
+        .pub-tag.t-poster { color: #b9e6c6; background: rgba(40, 140, 80, 0.2); border-color: rgba(60, 160, 100, 0.4); }
+        .pub-body { flex: 1 1 auto; min-width: 0; }
+        .pub-title { font-size: 1.04rem; font-weight: 500; color: #fff; line-height: 1.4; margin: 0 0 0.4rem; }
+        .pub-authors { font-size: 0.88rem; color: #b7b7b7; line-height: 1.55; margin: 0 0 0.3rem; }
+        .pub-me { color: #fff; font-weight: 600; }
+        .pub-journal { font-size: 0.86rem; color: #d6d6d6; line-height: 1.5; }
+        .pub-journal em { font-style: italic; color: #fff; }
+        .pub-meta { color: #aaaaaa; }
+        .pub-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.85rem; }
+
+        .cs-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #e8e8e8;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 20px;
+            padding: 0.32rem 0.8rem;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+        .cs-link:hover { background: rgba(179, 27, 27, 0.85); border-color: rgba(179, 27, 27, 0.9); color: #fff; text-decoration: none; }
+        .cs-link i { font-size: 0.82rem; }
+
+        /* ---- Press grid ---- */
+        .press-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.1rem;
+        }
+        .press-card { display: flex; flex-direction: column; padding: 1.5rem 1.5rem 1.35rem; }
+        .press-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.85rem; }
+        .press-outlet { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; font-weight: 600; color: #ff8a8a; letter-spacing: 0.01em; }
+        .press-outlet i { font-size: 0.95rem; opacity: 0.9; }
+        .press-featured { color: #ffd166; font-size: 0.85rem; }
+        .press-headline { font-size: 1.02rem; font-weight: 500; color: #fff; line-height: 1.45; margin: 0 0 1.1rem; flex: 1 1 auto; }
+        .press-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: auto; }
+        .press-date { font-size: 0.8rem; color: #aaaaaa; font-variant-numeric: tabular-nums; }
+        .press-card .cs-link { padding: 0.34rem 0.85rem; }
+
+        /* ---- Talks timeline ---- */
+        .talks-list { display: flex; flex-direction: column; gap: 0.9rem; }
+        .talk-card { display: flex; gap: 1.4rem; padding: 1.35rem 1.6rem; }
+        .talk-date {
+            flex: 0 0 96px;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+            color: #ff8a8a;
+            font-weight: 600;
+            font-size: 0.92rem;
+            line-height: 1.4;
+            padding-top: 0.1rem;
+        }
+        .talk-body { flex: 1 1 auto; min-width: 0; }
+        .talk-title { font-size: 1.04rem; font-weight: 500; color: #fff; line-height: 1.4; margin: 0 0 0.4rem; }
+        .talk-event { font-size: 0.9rem; color: #cfcfcf; line-height: 1.5; margin: 0; }
+        .talk-venue { font-size: 0.86rem; color: #a6a6a6; line-height: 1.5; margin: 0.15rem 0 0; }
+        .talk-host { font-size: 0.82rem; color: #a8a8a8; margin: 0.35rem 0 0; }
+        .talk-host i { color: #ff8a8a; margin-right: 0.35rem; }
+
+        /* ---- Screen-reader-only status ---- */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ---- Empty state ---- */
+        .cs-empty {
+            display: none;
+            text-align: center;
+            color: #a6a6a6;
+            padding: 3rem 1rem;
+            font-weight: 300;
+        }
+        .cs-empty i { display: block; font-size: 2rem; color: #6e6e6e; margin-bottom: 0.75rem; }
+        .cs-empty.show { display: block; }
+
+        /* ---- Reveal animation ---- */
+        .cs-reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .cs-reveal.in { opacity: 1; transform: none; }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .content-section { padding: 4rem 0; }
+            .cs-title { font-size: 2rem; }
+            .pub-card { flex-direction: column; gap: 0.75rem; padding: 1.25rem; }
+            .pub-aside { flex-direction: row; align-items: center; justify-content: flex-start; gap: 0.6rem; padding-top: 0; }
+            .talk-card { flex-direction: column; gap: 0.5rem; padding: 1.25rem; }
+            .talk-date { flex-basis: auto; }
+            .press-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cs-card, .cs-tab, .cs-link, .cs-reveal { transition: none !important; }
+            .cs-card:hover { transform: none; }
+            .cs-reveal { opacity: 1; transform: none; }
+        }
+    </style>
+
     <!-- Non-critical CSS - loaded asynchronously -->
     <link rel="preload" href="assets/css/themes/theme-cornell-red.min.css" as="style" onload="this.rel='stylesheet'" id="theme">
     <noscript><link rel="stylesheet" href="assets/css/themes/theme-cornell-red.min.css"></noscript>
@@ -716,6 +967,9 @@
             <!-- Navigation Primary -->
             <ul class="nav nav-primary-panel">
                 <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
+                <li class="nav-item"><a href="#press" class="nav-link">Press</a></li>
+                <li class="nav-item"><a href="#talks" class="nav-link">Talks</a></li>
             </ul>
         </div>
 
@@ -772,10 +1026,10 @@
                                 <!-- Secondary social links (expandable) -->
                                 <div class="social-links-secondary" data-social-links="x orcid pubmed nih_reporter web_of_science semantic_scholar github"></div>
                             </div>
-                            <button onclick="toggleBio()" class="btn-go btn-go-down show-after-typing" aria-label="Show bio" style="background: none; border: none; color: inherit; cursor: pointer;">
+                            <a href="#publications" class="btn-go btn-go-down" aria-label="Explore my work" style="color: inherit; cursor: pointer; text-decoration: none; margin-top: 0.5rem;">
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                <span class="ml-2">Learn More</span>
-                            </button>
+                                <span class="ml-2">Explore My Work</span>
+                            </a>
 
                             <!-- Bio Container -->
                             <div class="bio-container">
@@ -822,6 +1076,73 @@
                 </div>
             </div>
         </div>
+
+        <!-- ============================================================= -->
+        <!-- Publications -->
+        <!-- ============================================================= -->
+        <section id="publications" class="section content-section" data-scheme="dark">
+            <div class="section-content">
+                <div class="container">
+                    <header class="cs-header">
+                        <span class="cs-eyebrow">Research</span>
+                        <h2 class="cs-title">Publications</h2>
+                        <p class="cs-sub">Peer-reviewed journal articles, conference proceedings, abstracts, and posters across artificial intelligence, precision medicine, and medical extended reality. <span class="cs-count" id="pub-total"></span></p>
+                    </header>
+                    <div class="cs-controls">
+                        <div class="cs-tabs" id="pub-tabs" role="group" aria-label="Filter publications by type"></div>
+                        <div class="cs-search">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <input type="search" id="pub-search" placeholder="Search by title, author, or venue&hellip;" autocomplete="off" aria-label="Search publications" aria-controls="pub-list">
+                        </div>
+                    </div>
+                    <p class="cs-status sr-only" role="status" id="pub-status"></p>
+                    <div class="pub-list" id="pub-list"></div>
+                    <div class="cs-empty" id="pub-empty"><i class="fa fa-folder-open" aria-hidden="true"></i>No publications match your search.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- Press & Media -->
+        <!-- ============================================================= -->
+        <section id="press" class="section content-section cs-alt" data-scheme="dark">
+            <div class="section-content">
+                <div class="container">
+                    <header class="cs-header">
+                        <span class="cs-eyebrow">In the Media</span>
+                        <h2 class="cs-title">Press &amp; Media</h2>
+                        <p class="cs-sub">Selected coverage of my research and the teams I work with, from national outlets to institutional and industry features. <span class="cs-count" id="press-total"></span></p>
+                    </header>
+                    <div class="cs-controls">
+                        <div class="cs-tabs" id="press-tabs" role="group" aria-label="Filter press by category"></div>
+                    </div>
+                    <p class="cs-status sr-only" role="status" id="press-status"></p>
+                    <div class="press-grid" id="press-grid"></div>
+                    <div class="cs-empty" id="press-empty"><i class="fa fa-newspaper" aria-hidden="true"></i>No coverage in this category.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- Talks & Lectures -->
+        <!-- ============================================================= -->
+        <section id="talks" class="section content-section" data-scheme="dark">
+            <div class="section-content">
+                <div class="container">
+                    <header class="cs-header">
+                        <span class="cs-eyebrow">Speaking</span>
+                        <h2 class="cs-title">Talks &amp; Lectures</h2>
+                        <p class="cs-sub">Invited talks at conferences and institutions, and guest lectures across graduate and undergraduate courses. <span class="cs-count" id="talks-total"></span></p>
+                    </header>
+                    <div class="cs-controls">
+                        <div class="cs-tabs" id="talks-tabs" role="group" aria-label="Filter talks by type"></div>
+                    </div>
+                    <p class="cs-status sr-only" role="status" id="talks-status"></p>
+                    <div class="talks-list" id="talks-list"></div>
+                    <div class="cs-empty" id="talks-empty"><i class="fa fa-microphone-slash" aria-hidden="true"></i>No talks in this category.</div>
+                </div>
+            </div>
+        </section>
 
     </div>
     <!-- Content / End -->
@@ -1106,6 +1427,436 @@
                 setTimeout(initSocialLinks, 1);
             }
         })();
+    </script>
+
+    <!-- Publications / Press / Talks data + rendering -->
+    <script>
+    (function () {
+        'use strict';
+
+        /* ============================ DATA ============================ */
+
+        // Publications: t=type, y=year, ti=title, au=authors, jo=venue, me=detail, li=links
+        var PUBS = [
+            // ---- Journal Articles ----
+            { t:'journal', y:2026, ti:'Towards A Foundation Model for Clinical Voice Biomarkers', au:'Elemento O, Sigaras A, Colonel J, Hajirasouliha I, Ghosh S, Bensoussan Y, Bridge2AI-Voice Consortium, Rameau A', jo:'medRxiv', me:'2026.05.28.26354346', li:[{k:'doi',v:'10.64898/2026.05.28.26354346'}] },
+            { t:'journal', y:2026, ti:'EXaCT-2: an augmented and customizable oncology-focused whole exome sequencing platform', au:'Waltman P, Chandra P, Eng KW, Wilkes DC, Park H, Pabon C, Delpe P, Bhinder B, Manohar J, Kane T, Fernandez E, Gorski K, Greco N, Simi M, Tang JM, Zisimopoulos P, King A, Al Assaad M, Ten Eyck T, Roberts D, Monge J, Demichelis F, Tam W, Ouseph MM, Sigaras A, Beltran H, Rennert H, Lindeman N, Song W, Solomon J, Mosquera JM, Kim R, Catalano J, Hassane DC, Sigouros M, Elemento O, Alonso A, Sboner A', jo:'NPJ Precis Oncol', me:'2026 Apr 21', li:[{k:'doi',v:'10.1038/s41698-026-01390-5'},{k:'pmid',v:'42014463'}] },
+            { t:'journal', y:2026, ti:'Whole genome sequencing of locally advanced and metastatic breast carcinoma unravels relevant molecular signatures and novel events', au:'Kozan EN, Delgado-de la Mora J, Al Assaad M, Ginter P, Gundem G, Levine MF, Gorski K, Phan A, Beg S, Sigaras A, LaPolla P, Semaan A, Wilkes DC, Greco N, Sigouros M, Manohar J, Medina-Martínez JS, Sboner A, Elemento O, Hoda S, Saxena A, Andreopoulou E, Boyraz B, Mosquera JM', jo:'Pathol Res Pract', me:'2026 Jun;282:156469', li:[{k:'doi',v:'10.1016/j.prp.2026.156469'},{k:'pmid',v:'42013747'}] },
+            { t:'journal', y:2026, ti:'Using an Artificial Intelligence Conversational Agent in Virtual Reality to Teach Serious Illness Communication Skills to Residents', au:'Henry O, Brumberger E, Jotwani R, Sigaras A, Sriram S, Yeh IM, Rubin J', jo:'J Grad Med Educ', me:'2026 Apr;18(2):193-194', li:[{k:'doi',v:'10.4300/JGME-D-25-00952.1'},{k:'pmid',v:'42005895'},{k:'pmc',v:'PMC13086130'}] },
+            { t:'journal', y:2026, ti:'Decoding Gender in Cough Sounds: A Transformer-Based Analysis', au:'He L, Li H, Wang S, Baik E, Kervin S, Zhao R, Ramos JM, Bridge2AI-Voice Consortium, Colonel J, Rameau A', jo:'Laryngoscope', me:'2026 Jan 26', li:[{k:'doi',v:'10.1002/lary.70393'},{k:'pmid',v:'41588706'}] },
+            { t:'journal', y:2025, ti:'Adapting data science competencies by role and purpose: Voice AI', au:'Dorr DA, Krussel A, Hauck R, Jackson C, Dalal A, Bedrick S, Payne PRO, Bridge2AI-Voice Consortium, Hersh W', jo:'Front Digit Health', me:'2025 Oct 21;7:1610253', li:[{k:'doi',v:'10.3389/fdgth.2025.1610253'},{k:'pmid',v:'41195285'},{k:'pmc',v:'PMC12582912'}] },
+            { t:'journal', y:2025, ti:'Expert Consensus Best Practices for the Safe, Ethical, and Effective Design and Implementation of Artificially Intelligent Conversational Agent (i.e. Chatbot/Virtual Human) Systems in Healthcare Applications', au:'Rizzo A, Mozgai S, Sigaras A, Rubin JE, Jotwani R', jo:'Journal of Medical Extended Reality', me:'2025 Sep 8;2(1):209-222', li:[{k:'doi',v:'10.1177/29941520251369450'}] },
+            { t:'journal', y:2025, ti:'Voice as a biomarker: exploratory analysis for benign and malignant vocal fold lesions', au:'Jenkins P, Harrison R, Bedrick S, Karstens L, Bridge2AI-Voice Consortium, Hersh W', jo:'Front Digit Health', me:'2025 Aug 12;7:1609811', li:[{k:'doi',v:'10.3389/fdgth.2025.1609811'},{k:'pmid',v:'40873766'},{k:'pmc',v:'PMC12378753'}] },
+            { t:'journal', y:2025, ti:'"Voice is the New Blood": a discourse analysis of voice AI health-tech start-up websites', au:'Blatter A, Gallois H, Evangelista E, Bensoussan Y, Bridge2AI-Voice Consortium, Bélisle-Pipon JC', jo:'Front Digit Health', me:'2025 May 29;7:1568159', li:[{k:'doi',v:'10.3389/fdgth.2025.1568159'},{k:'pmid',v:'40510414'},{k:'pmc',v:'PMC12158947'}] },
+            { t:'journal', y:2025, ti:'Transformers for rapid detection of airway stenosis and stridor', au:'Anibal J, Doctor R, Boyer M, Newberry K, De Santiago I, Awan S, Abdel-Aty Y, Dion G, Daoud V, Huth H, Watts S, Wood BJ, Clifton D, Gelbard A, Powell M, Toghranegar J, Bridge2AI Voice Consortium, Bensoussan Y', jo:'Sci Rep', me:'2025 May 2;15(1):15394', li:[{k:'doi',v:'10.1038/s41598-025-99369-y'},{k:'pmid',v:'40316652'},{k:'pmc',v:'PMC12048665'}] },
+            { t:'journal', y:2025, ti:'The Bridge2AI-voice application: initial feasibility study of voice data acquisition through mobile health', au:'Moothedan E, Boyer M, Watts S, Abdel-Aty Y, Ghosh S, Rameau A, Sigaras A, Elemento O, Bridge2AI-Voice Consortium, Bensoussan Y', jo:'Front Digit Health', me:'2025 Apr 15;7:1514971', li:[{k:'doi',v:'10.3389/fdgth.2025.1514971'},{k:'pmid',v:'40302934'},{k:'pmc',v:'PMC12037532'}] },
+            { t:'journal', y:2025, ti:'AIRWAY-XR: Augmented Instruction to Refine Wayfinding and Yielding Skills in Emergency Medicine Residents for Intubation using Mixed Reality Technology', au:'Bhavsar N, Sriram S, Balasubramanian S, Davidson C, Piechowski W, Zimm J, Sanapala S, Fortenko A, Lame M, Greenwald PW, St. George J, Sigaras A', jo:'medRxiv', me:'2025 Jan 6:2025-01', li:[{k:'doi',v:'10.1101/2025.01.06.25320067'}] },
+            { t:'journal', y:2025, ti:'EXaCT-2: An augmented and customizable oncology-focused whole exome sequencing platform', au:'Waltman P, Chandra P, Eng KW, Wilkes DC, Park H, Pabon C, Gorski K, Greco N, Simi M, Tang JM, Zisimopoulos P, King A, Al Assaad M, Teneyck T, Roberts D, Monge J, Demichelis F, Tam W, Ouseph MM, Sigaras A, Beltran H, Rennert H, Lindeman N, Song W, Solomon J, Mosquera JM, Kim R, Catalano J, Hassane DC, Sigouros M, Elemento O, Alonso A, Sboner A', jo:'medRxiv', me:'2024.12.05.24318515', li:[{k:'doi',v:'10.1101/2024.12.05.24318515'}] },
+            { t:'journal', y:2024, ti:'The doctor will polygraph you now', au:'Anibal J, Gunkel J, Awan S, Huth H, Nguyen H, Le T, Bélisle-Pipon JC, Boyer M, Hazen L, Bridge2AI Voice Consortium, Bensoussan Y, Clifton D, Wood B', jo:'Npj Health Syst', me:'2024;1(1):1', li:[{k:'doi',v:'10.1038/s44401-024-00001-4'},{k:'pmid',v:'39759269'},{k:'pmc',v:'PMC11698301'}] },
+            { t:'journal', y:2024, ti:'High-fidelity pose estimation for real-time extended reality (XR) visualization for cardiac catheterization', au:'Annabestani M, Sriram S, Caprio A, Janghorbani S, Wong SC, Sigaras A, Mosadegh B', jo:'Sci Rep', me:'2024 Nov 6;14(1):26962', li:[{k:'doi',v:'10.1038/s41598-024-76384-z'},{k:'pmid',v:'39505924'},{k:'pmc',v:'PMC11542031'}] },
+            { t:'journal', y:2024, ti:'Advanced XR-Based 6-DOF Catheter Tracking System for Immersive Cardiac Intervention Training', au:'Annabestani M, Sriram S, Wong SC, Sigaras A, Mosadegh B', jo:'arXiv preprint', me:'arXiv:2411.02611', li:[{k:'arxiv',v:'2411.02611'}] },
+            { t:'journal', y:2024, ti:'Workshop summaries from the 2024 voice AI symposium, presented by the Bridge2AI-voice consortium', au:'Bahr R, Anibal J, Bedrick S, Bélisle-Pipon JC, Bensoussan Y, Blaylock N, Castermans J, Comito K, Dorr D, Hale G, Jackson C, Krussel A, Kuman K, Komarlu AR, Lerner-Ellis J, Powell M, Ravitsky V, Rameau A, Reavis C, Sigaras A, Cruz SS, Vojtech J, Urbano M, Watts S, Zhao R, Toghranegar J, Bridge2AI-voice consortium', jo:'Front Digit Health', me:'2024 Oct 30;6:1484818', li:[{k:'doi',v:'10.3389/fdgth.2024.1484818'},{k:'pmid',v:'39540145'},{k:'pmc',v:'PMC11557516'}] },
+            { t:'journal', y:2024, ti:'Evidence-Based Recommendations for Tablet Recordings From the Bridge2AI-Voice Acoustic Experiments', au:'Awan SN, Bahr R, Watts S, Boyer M, Budinsky R, Bridge2AI-Voice Consortium, Bensoussan Y', jo:'J Voice', me:'2024 Sep 20:S0892-1997(24)00283-2', li:[{k:'doi',v:'10.1016/j.jvoice.2024.08.029'},{k:'pmid',v:'39306498'},{k:'pmc',v:'PMC11922786'}] },
+            { t:'journal', y:2024, ti:'Automatic ploidy prediction and quality assessment of human blastocysts using time-lapse imaging', au:'Rajendran S, Brendel M, Barnes J, Zhan Q, Malmsten JE, Zisimopoulos P, Sigaras A, Ofori-Atta K, Meseguer M, Miller KA, Hoffman D, Rosenwaks Z, Elemento O, Zaninovic N, Hajirasouliha I', jo:'Nat Commun', me:'2024 Sep 5;15(1):7756', li:[{k:'doi',v:'10.1038/s41467-024-51823-7'},{k:'pmid',v:'39237547'},{k:'pmc',v:'PMC11377764'}] },
+            { t:'journal', y:2024, ti:'Voice as a Biomarker in Health-Tech: Mapping the Evolving Landscape of Voice Biomarkers in the Start-Up World', au:'Evangelista EG, Bélisle-Pipon JC, Naunheim MR, Powell M, Gallois H, Bridge2AI-Voice Consortium, Bensoussan Y', jo:'Otolaryngol Head Neck Surg', me:'2024 Aug;171(2):340-352', li:[{k:'doi',v:'10.1002/ohn.830'},{k:'pmid',v:'38822764'}] },
+            { t:'journal', y:2024, ti:'Stakeholder perspectives on ethical and trustworthy voice AI in health care', au:'Bélisle-Pipon JC, Powell M, English R, Malo MF, Ravitsky V, Bridge2AI–Voice Consortium, Bensoussan Y', jo:'Digit Health', me:'2024 Jul 23;10:20552076241260407', li:[{k:'doi',v:'10.1177/20552076241260407'},{k:'pmid',v:'39055787'},{k:'pmc',v:'PMC11271113'}] },
+            { t:'journal', y:2024, ti:'Current Practices in Voice Data Collection and Limitations to Voice AI Research: A National Survey', au:'Evangelista E, Kale R, McCutcheon D, Rameau A, Gelbard A, Powell M, Johns M, Law A, Song P, Naunheim M, Watts S, Bryson PC, Crowson MG, Pinto J, Bridge2AI-Voice, Bensoussan Y', jo:'Laryngoscope', me:'2024 Mar;134(3):1333-1339', li:[{k:'doi',v:'10.1002/lary.31052'},{k:'pmid',v:'38087983'}] },
+            { t:'journal', y:2023, ti:'Individuals and (Synthetic) Data Points: Using Value-Sensitive Design to Foster Ethical Deliberations on Epistemic Transitions', au:'Bélisle-Pipon JC, Ravitsky V, Bridge2AI-Voice Consortium, Bensoussan Y', jo:'Am J Bioeth', me:'2023 Sep;23(9):69-72', li:[{k:'doi',v:'10.1080/15265161.2023.2237436'},{k:'pmid',v:'37647464'},{k:'pmc',v:'PMC11278678'}] },
+            { t:'journal', y:2023, ti:'A non-invasive artificial intelligence approach for the prediction of human blastocyst ploidy: a retrospective model development and validation study', au:'Barnes J, Brendel M, Gao VR, Rajendran S, Kim J, Li Q, Malmsten JE, Sierra JT, Zisimopoulos P, Sigaras A, Khosravi P, Meseguer M, Zhan Q, Rosenwaks Z, Elemento O, Zaninovic N, Hajirasouliha I', jo:'Lancet Digit Health', me:'2023 Jan;5(1):e28-e40', li:[{k:'doi',v:'10.1016/S2589-7500(22)00213-8'},{k:'pmid',v:'36543475'}] },
+            { t:'journal', y:2022, ti:'The genomic landscape of metastatic clear cell renal cell carcinoma after systemic therapy', au:'van der Mijn JC, Eng KW, Chandra P, Fernandez E, Ramazanoglu S, Sigaras A, Oromendia C, Gudas LJ, Tagawa ST, Nanus DM, Faltas BF, Beltran H, Sternberg CN, Elemento O, Sboner A, Mosquera JM, Molina AM', jo:'Mol Oncol', me:'2022 Mar 1', li:[{k:'doi',v:'10.1002/1878-0261.13204'},{k:'pmid',v:'35231161'}] },
+            { t:'journal', y:2022, ti:'Weakly-supervised tumor purity prediction from frozen H&E stained slides', au:'Brendel M, Getseva V, Assaad MA, Sigouros M, Sigaras A, Kane T, Khosravi P, Mosquera JM, Elemento O, Hajirasouliha I', jo:'EBioMedicine', me:'2022 Jun;80:104067', li:[{k:'doi',v:'10.1016/j.ebiom.2022.104067'},{k:'pmid',v:'35644123'},{k:'pmc',v:'PMC9157012'}] },
+            { t:'journal', y:2022, ti:'Containers in Bioinformatics: Applications, Practical Considerations, and Best Practices in Molecular Pathology', au:'Kadri S, Sboner A, Sigaras A, Roy S', jo:'J Mol Diagn', me:'2022 May;24(5):442-454', li:[{k:'doi',v:'10.1016/j.jmoldx.2022.01.006'},{k:'pmid',v:'35189355'}] },
+            { t:'journal', y:2022, ti:'Molecular Evaluation of Low-grade Low-stage Endometrial Cancer With and Without Recurrence', au:'Matrai CE, Ohara K, Eng KW, Glynn SM, Chandra P, Chatterjee-Paer S, Motanagh S, Mirabelli S, Kurtis B, He B, Sigaras A, Gupta D, Chapman-Davis E, Holcomb K, Sboner A, Elemento O, Ellenson LH, Mosquera JM', jo:'Int J Gynecol Pathol', me:'2022 May 1;41(3):207-219', li:[{k:'doi',v:'10.1097/PGP.0000000000000798'},{k:'pmid',v:'34483300'},{k:'pmc',v:'PMC9018213'}] },
+            { t:'journal', y:2021, ti:'A Deep Learning Approach to Diagnostic Classification of Prostate Cancer Using Pathology-Radiology Fusion', au:'Khosravi P, Lysandrou M, Eljalby M, Li Q, Kazemi E, Zisimopoulos P, Sigaras A, Brendel M, Barnes J, Ricketts C, Meleshko D, Yat A, McClure TD, Robinson BD, Sboner A, Elemento O, Chughtai B, Hajirasouliha I', jo:'J Magn Reson Imaging', me:'2021 Aug;54(2):462-471', li:[{k:'doi',v:'10.1002/jmri.27599'},{k:'pmid',v:'33719168'},{k:'pmc',v:'PMC8360022'}] },
+            { t:'journal', y:2021, ti:'CD38 in Advanced Prostate Cancers', au:'Guo C, Crespo M, Gurel B, Dolling D, Rekowski J, Sharp A, Petremolo A, Sumanasuriya S, Rodrigues DN, Ferreira A, Pereira R, Figueiredo I, Mehra N, Lambros MBK, Neeb A, Gil V, Seed G, Terstappen L, Alimonti A, Drake CG, Yuan W, de Bono JS, Robinson D, Van Allen EM, Wu YM, Mosquera JM, Montgomery B, Taplin ME, Pritchard CC, Attard G, Beltran H, Sigaras A, Eng KW, Elemento O, Sboner A, Heath EI, Scher HI, Pienta KJ, Kantoff P, Rubin MA, Nelson PS, Garraway LA, Sawyers CL, Chinnaiyan AM', jo:'European Urology', me:'2021 Mar 5', li:[{k:'doi',v:'10.1016/j.eururo.2021.01.017'}] },
+            { t:'journal', y:2020, ti:'Predictive modeling in reproductive medicine: Where will the future of artificial intelligence research take us?', au:'Curchoe CL, Malmsten J, Bormann C, Shafiee H, Farias AFS, Mendizabal G, Chavez-Badiola A, Sigaras A, Alshubbar H, Chambost J, Jacques C, Pena CA, Drakeley A, Freour T, Hajirasouliha I, Hickman CFL, Elemento O, Zaninovic N, Rosenwaks Z', jo:'Fertility and Sterility', me:'2020 Nov 1;114(5):934-40', li:[{k:'doi',v:'10.1016/j.fertnstert.2020.10.040'}] },
+            { t:'journal', y:2020, ti:'Building an international consortium for tracking coronavirus health status', au:'Segal E, Zhang F, Lin X, King G, Shalem O, Shilo S, Allen WE, Alquaddoomi F, Altae-Tran H, Anders S, Balicer R, Bauman T, Bonilla X, Booman G, Chan AT, Cohen O, Coletti S, Davidson N, Dor Y, Drew DA, Elemento O, Evans G, Ewels P, Gale J, Gavrieli A, Geiger B, Grad YH, Greene CS, Hajirasouliha I, Jerala R, Kahles A, Kallioniemi O, Keshet A, Kocarev L, Landua G, Meir T, Muller A, Nguyen LH, Oresic M, Ovchinnikova S, Peterson H, Prodanova J, Rajagopal J, Rätsch G, Rossman H, Rung J, Sboner A, Sigaras A, Spector T, Steinherz R, Stevens I, Vilo J, Wilmes P', jo:'Nat Med', me:'26, 1161–1165 (2020)', li:[{k:'doi',v:'10.1038/s41591-020-0929-x'}] },
+            { t:'journal', y:2019, ti:'Biopsy-free prediction of prostate cancer aggressiveness using deep learning and radiology imaging', au:'Khosravi P, Lysandrou M, Eljalby M, Brendel M, Li Q, Kazemi E, Barnes J, Zisimopoulos P, Sigaras A, Ricketts C, Meleshko D, Yat A, McClure TD, Robinson BD, Sboner A, Elemento O, Chughtai B, Hajirasouliha I', jo:'medRxiv', me:'2019', li:[{k:'doi',v:'10.1101/2019.12.16.19015057'}] },
+            { t:'journal', y:2019, ti:'Deep learning enables robust assessment and selection of human blastocysts after in vitro fertilization', au:'Khosravi P, Kazemi E, Zhan Q, Malmsten JE, Toschi M, Zisimopoulos P, Sigaras A, Lavery S, Cooper LA, Hickman C, Meseguer M', jo:'NPJ Digital Medicine', me:'2019 Apr 4;2(1):1-9', li:[{k:'doi',v:'10.1038/s41746-019-0096-y'}] },
+            { t:'journal', y:2019, ti:'Integrative Molecular Analysis of Patients With Advanced and Metastatic Cancer', au:'Sailer V, Eng KW, Zhang T, Bareja R, Pisapia D, Sigaras A, Bhinder B, Romanel A, Wilkes D, Sticca E, Cyrta C, Rao R, Sahota S, Pauli C, Beg S, Motanagh S, Kossai M, Fontunge J, Puca L, Rennert H, Xiang JZ, Greco N, Kim R, MacDonald TY, McNary T, Blattner-Johnson M, Schiffman MH, Faltas BM, Greenfield JP, Rickman D, Andreopoulou E, Holcomb K, Vahdat LT, Scherr DS, van Besien K, Barbieri CE, Robinson BD, Fine HA, Ocean AJ, Molina A, Shah MA, Nanus DM, Pan Q, Demichelis F, Tagawa ST, Song W, Mosquera JM, Sboner A, Rubin MA, Elemento O, Beltran H', jo:'JCO Precision Oncology', me:'2019;3:1-12', li:[{k:'doi',v:'10.1200/PO.19.00047'}] },
+            { t:'journal', y:2018, ti:'Bone biopsy protocol for advanced prostate cancer in the era of precision medicine', au:'Sailer V, Schiffman MH, Kossai M, Cyrta J, Beg S, Sullivan B, Pua BB, Lee KS, Talenfeld AD, Nanus DM, Tagawa ST, Robinson BD, Rao RA, Pauli C, Bareja R, Beltran LS, Sigaras A, Eng KW, Elemento O, Sboner A, Rubin MA, Beltran H, Mosquera JM', jo:'Cancer', me:'2018 Mar 1;124(5):1008-1015', li:[{k:'doi',v:'10.1002/cncr.31173'}] },
+            { t:'journal', y:2017, ti:'Next-Generation Rapid Autopsies Enable Tumor Evolution Tracking and Generation of Preclinical Models', au:'Pisapia DJ, Salvatore S, Pauli C, Hissong E, Eng K, Prandi D, Sailer VW, Robinson BD, Park K, Cyrta J, Tagawa ST, Kossai M, Fontugne J, Kim R, Sigaras A, Rao R, Pancirer D, Faltas B, Bareja R, Molina AM, Nanus DM, Rajappa P, Souweidane MM, Greenfield J, Emde AK, Robine N, Elemento O, Sboner A, Demichelis F, Beltran H, Rubin MA, Mosquera JM', jo:'JCO Precis Oncol', me:'2017', li:[{k:'doi',v:'10.1200/PO.16.00038'}] },
+            { t:'journal', y:2017, ti:'ERF mutations reveal a balance of ETS factors controlling prostate oncogenesis', au:'Bose R, Karthaus WR, Armenia J, Abida W, Iaquinta PJ, Zhang Z, Wongvipat J, Wasmuth EV, Shah N, Sullivan PS, Doran MG, Wang P, Patruno A, Zhao Y, Robinson D, Van Allen EM, Schultz N, Lonigro RJ, Mosquera JM, Montgomery B, Taplin ME, Pritchard CC, Attard G, Beltran H, Bradley RK, Vinson J, Cao X, Vats P, Kunju LP, Hussain M, Tomlins SA, Cooney KA, Smith DC, Brennan C, Siddiqui J, Mehra R, Chen Y, Rathkopf DE, Morris MJ, Solomon SB, Durack JC, Reuter VE, Gopalan A, Gao J, Loda M, Lis RT, Bowden M, Balk SP, Gaviola G, Sougnez C, Gupta M, Yu EY, Mostaghel EA, Cheng HH, Mulcahy H, True LD, Plymate SR, Dvinge H, Ferraldeschi R, Flohr P, Miranda S, Zafeiriou Z, Tunariu N, Mateo J, Perez-Lopez R, Demichelis F, Robinson BD, Schiffman M, Nanus DM, Tagawa ST, Sigaras A, Eng KW, Elemento O, Sboner A, Heath EI, Scher HI, Pienta KJ, Kantoff P, de Bono JS, Rubin MA, Nelson PS, Garraway LA, Sawyers CL, Schultz N', jo:'Nature', me:'2017 Jun 29;546(7660):671-675', li:[{k:'doi',v:'10.1038/nature22820'},{k:'pmid',v:'28614298'},{k:'pmc',v:'PMC5576182'}] },
+            { t:'journal', y:2015, ti:'Whole-Exome Sequencing of Metastatic Cancer and Biomarkers of Treatment Response', au:'Beltran H, Eng K, Mosquera JM, Sigaras A, Romanel A, Rennert H, Kossai M, Pauli C, Faltas B, Fontugne J, Park K, Banfelder J, Prandi D, Madhukar N, Zhang T, Padilla J, Greco N, McNary TJ, Herrscher E, Wilkes D, MacDonald TY, Xue H, Vacic V, Emde AK, Oschwald D, Tan AY, Chen Z, Collins C, Gleave ME, Wang Y, Chakravarty D, Schiffman M, Kim R, Campagne F, Robinson BD, Nanus DM, Tagawa ST, Xiang JZ, Smogorzewska A, Demichelis F, Rickman DS, Sboner A, Elemento O, Rubin MA', jo:'JAMA Oncol', me:'2015 Jul;1(4):466-74', li:[{k:'doi',v:'10.1001/jamaoncol.2015.1313'}] },
+            { t:'journal', y:2015, ti:'Integrative clinical genomics of advanced prostate cancer', au:'Robinson D, Van Allen EM, Wu YM, Schultz N, Lonigro RJ, Mosquera JM, Montgomery B, Taplin ME, Pritchard CC, Attard G, Beltran H, Abida W, Bradley RK, Vinson J, Cao X, Vats P, Kunju LP, Hussain M, Feng FY, Tomlins SA, Cooney KA, Smith DC, Brennan C, Siddiqui J, Mehra R, Chen Y, Rathkopf DE, Morris MJ, Solomon SB, Durack JC, Reuter VE, Gopalan A, Gao J, Loda M, Lis RT, Bowden M, Balk SP, Gaviola G, Sougnez C, Gupta M, Yu EY, Mostaghel EA, Cheng HH, Mulcahy H, True LD, Plymate SR, Dvinge H, Ferraldeschi R, Flohr P, Miranda S, Zafeiriou Z, Tunariu N, Mateo J, Perez-Lopez R, Demichelis F, Robinson BD, Schiffman M, Nanus DM, Tagawa ST, Sigaras A, Eng KW, Elemento O, Sboner A, Heath EI, Scher HI, Pienta KJ, de Bono JS, Rubin MA, Nelson PS, Garraway LA, Sawyers CL, Chinnaiyan AM', jo:'Cell', me:'2015 May 21;161(5):1215-1228', li:[{k:'doi',v:'10.1016/j.cell.2015.05.001'}] },
+
+            // ---- Conference Proceedings ----
+            { t:'conference', y:2014, ti:'Surgical Structured Light for 3D minimally invasive surgical imaging', au:'Reiter A, Sigaras A, Fowler D, Allen PK', jo:'Intelligent Robots and Systems (IROS 2014), 2014 IEEE/RSJ International Conference on', me:'2014 Nov 6, 1282–1287', li:[{k:'doi',v:'10.1109/IROS.2014.6942722'}] },
+
+            // ---- Abstracts ----
+            { t:'abstract', y:2025, ti:'378 Leveraging large language models to communicate translational science benefits at Weill Cornell Medicine Clinical and Translational Science Center', au:'Bales M, Wood EA, Sigaras A, Sholle EC, Imperato-McGinley J', jo:'Journal of Clinical and Translational Science', me:'2025 Apr 1;9(s1):117', li:[] },
+            { t:'abstract', y:2024, ti:'362 AIRWAY-MR: Assessing Traditional Intubation Didactics With a Novel Mixed Reality Module', au:'Bhavsar N, Sriram S, Balasubramanian S, Davidson C, Fortenko A, Lame M, Greenwald P, George J, Sigaras A, Piechowski W, Sanapala S', jo:'Annals of Emergency Medicine', me:'2024 Oct 1;84(4):S165', li:[] },
+            { t:'abstract', y:2023, ti:'An Event-Driven Architecture to Simplify Systems Communication in the Molecular Laboratory', au:'Sboner A, Simi M, Gorski K, Delpe P, Fernandez E, Solomon J, Tang J, Zisimopoulos P, Sigaras A', jo:'Journal of Molecular Diagnostics', me:'2023 Nov 1;25(11):S78-S79', li:[] },
+            { t:'abstract', y:2023, ti:'253 AIRWAY-XR: Augmented Instruction to Refine Wayfinding and Yielding Skills in Emergency Medicine Residents for Intubation Using Mixed Reality Technology', au:'Bhavsar N, Sriram S, Coleman D, Sulcov A, Fortenko A, Lame M, Greenwald P, George J, Sigaras A', jo:'Annals of Emergency Medicine', me:'2023 Oct 1;82(4):S113-4', li:[] },
+            { t:'abstract', y:2022, ti:'Building the Healthcare Metaverse: Leveraging Mixed Reality Guides to Augment Standard Operating Procedures (SOP) in a Precision Medicine Laboratory', au:'Perez N, Elemento O, Sboner A, Sigaras A', jo:'Journal of Molecular Diagnostics', me:'2022 Nov 1;24(10):S85-S86', li:[{k:'doi',v:'10.1016/S1525-1578(22)00284-7'}] },
+            { t:'abstract', y:2020, ti:'mrLab: Leveraging Mixed Reality in a Precision Medicine Laboratory to Increase Safety and Productivity of Healthcare Workers during the COVID-19 Pandemic', au:'Sboner A, Sigaras A, Davis J, Roshal S, Wilkes D, Hebding C, Bockelman D, Kane T, Ackermann S, Sigouros M, Catalano J, Mosquera JM, Sternberg C, Loda M, Weinstein H, Song W, Elemento O', jo:'Journal of Molecular Diagnostics', me:'2020 Nov 1;22(11):S55-S56', li:[{k:'doi',v:'10.1016/S1525-1578(20)30513-4'}] },
+            { t:'abstract', y:2020, ti:'Many NGS-Based Assays, One Platform: Ensuring a High-Quality Case Review and Sign-out Process with NGS Reporter (NGSR)', au:'Sboner A, Zisimopoulos P, Tang J, Oakley J, Spiewack M, Velu P, Solomon J, Song W, Park H, Kluk M, Mosquera J, Fernandez E, Simi M, Dorsaint P, Eng K, Catalano J, Pisapia D, Tran H, Tam W, Rennert H, Loda M, Elemento O, Sigaras A', jo:'Journal of Molecular Diagnostics', me:'2020 Nov 1;22(11):S54', li:[{k:'doi',v:'10.1016/S1525-1578(20)30513-4'}] },
+            { t:'abstract', y:2020, ti:'Abstract IA33: Precision medicine at Weill Cornell Medicine/New York Presbyterian: Breaking silos, integrating resources, being inclusive', au:'Sboner A, Sternberg C, Mosquera JM, Song W, Kluk M, Tam W, Rennert H, Pisapia D, Catalano J, Cheang G, Wilkes D, Bulaon D, Martin LM, Sigaras A, Eng K, Bareja R, Kim R, Loda M, Elemento O', jo:'Cancer Epidemiol Biomarkers Prev', me:'June 1 2020;29(6 Suppl 2):IA33', li:[{k:'doi',v:'10.1158/1538-7755.DISP19-IA33'}] },
+            { t:'abstract', y:2020, ti:'Building Scalable and Robust Informatics Systems for Clinical Genomic Assays in the Precision Medicine Era', au:'Sboner A, Eng K, Zisimopoulus P, Sigaras A, Simi M, Ramazanoglu S, Spiewack M, Oakley J, Parmar S, Tang J, Catalano J, Kim R, Tam W, Kluk M, Song W, Elemento O', jo:'Journal of Molecular Diagnostics', me:'22(5):S6', li:[] },
+            { t:'abstract', y:2020, ti:'Whole exome sequencing analysis of local/regional and distant metastatic breast carcinoma', au:'McIntire P, Ginter P, Eng KW, Lapolla D, Sigaras A, Beg S, Manohar J, Greco N, Zhang T, Bareja R, Sboner A, Elemento O, Andreopoulou E, Mosquera JM', jo:'Mod Pathol (USCAP 2020 Abstracts)', me:'33, 2097–2136 (2020)', li:[{k:'doi',v:'10.1038/s41379-020-0486-3'}] },
+            { t:'abstract', y:2019, ti:'Mixed Reality for a Precision Medicine Laboratory: The Future Is Now!', au:'Sigaras A, Wilkes D, Hebding C, Martin LM, Bulaon D, Catalano J, Mosquera JM, Sternberg C, Loda M, Weinstein H, Song W, Elemento O, Sboner A', jo:'Journal of Molecular Diagnostics', me:'2019 Nov 1;21(6):1172', li:[{k:'doi',v:'10.1016/S1525-1578(19)30391-5'}] },
+            { t:'abstract', y:2019, ti:'A crowdsourcing approach for high-quality interpretation of cancer variants', au:'Uppal M, Sigaras A, Zisimopoulos P, Tang J, Sternberg CN, Song W, Pisapia D, Rennert H, Sboner A', jo:'ICGC 15th Scientific Workshop and 2nd ARGO Meeting', me:'May 28 2019', li:[] },
+            { t:'abstract', y:2018, ti:'Integrating Clinical Genomics into Electronic Health Records to Foster Precision Medicine', au:'Sigaras A, Eng KW, Sticca E, Ramazanoglu S, Parmar S, Aljaludi A, Israel M, Artz D, Leslin C, D\'Agoustine J, Cheang G', jo:'Journal of Molecular Diagnostics', me:'2018 Nov 1;20(6):965', li:[{k:'doi',v:'10.1016/S1525-1578(18)30401-X'}] },
+            { t:'abstract', y:2018, ti:'Abstract 923: The cBioPortal for Cancer Genomics: An intuitive opensource platform for exploration, analysis and visualization of cancer genomics data', au:'Gao J, Mazor T, Ciftci E, Raman P, Lukasse P, Bahceci I, Sigaras A, Abeshouse A, de Bruijn I, Gross B, Kundra R, Lisman A, Ochoa A, Sheridan R, Su J, Sumer SO, Sun Y, Wang A, Wang J, Wilson M, Zhang H, Kumari P, Lindsay J, Kalletla K, Zhu K, Plantalech O, Schaeffer F, Tan S, Zaal D, van Hagen S, van Bochove K, Dogrusoz U, Pugh T, Resnick A, Sander C, Schultz N, Cerami E', jo:'AACR Annual Meeting 2018', me:'Vol 78, Issue 13, Apr 14-18, 2018; Chicago, IL', li:[{k:'doi',v:'10.1158/1538-7445.AM2018-923'}] },
+            { t:'abstract', y:2018, ti:'331 The Development of a Custom LIMS: An Introduction and Guide to Successful Implementation', au:'Catalano J, Cheang G, Pancirer D, Merzier E, Li Y, Tran H, Sigaras A', jo:'American Journal of Clinical Pathology', me:'Vol 149, Issue suppl_1, 11 Jan 2018, S142–S143', li:[{k:'doi',v:'10.1093/ajcp/aqx127.330'}] },
+            { t:'abstract', y:2015, ti:'Precision cancer medicine program for whole-exome sequencing of metastatic tumors reveals biomarkers of response', au:'Beltran H, Eng K, Mosquera J, Sigaras A, Romanel A, Rennert H, Kossai M, Pauli C, Faltas B, Fontugne J, Robinson B, Nanus D, Tagawa S, Xiang J, Demichelis F, Rickman D, Sboner A, Elemento O, Rubin M', jo:'Cancer Research', me:'Vol 75, Issue 15, 1 Aug 2015, Page 4745', li:[{k:'doi',v:'10.1158/1538-7445.AM2015-4745'}] },
+
+            // ---- Posters ----
+            { t:'poster', y:2022, ti:'Building the Healthcare Metaverse: Leveraging Mixed Reality Guides to Augment Standard Operating Procedures (SOP) in a Precision Medicine Laboratory', au:'Perez N, Elemento O, Sboner A, Sigaras A', jo:'AMP 2022 Annual Meeting & Expo', me:'5 November 2022', li:[] },
+            { t:'poster', y:2020, ti:'mrLab: Leveraging Mixed Reality in a Precision Medicine Laboratory to Increase Safety and Productivity of Healthcare Workers during the COVID-19 Pandemic', au:'Sboner A, Sigaras A, Davis J, Roshal S, Wilkes D, Hebding C, Bockelman D, Kane T, Ackermann S, Sigouros M, Catalano J, Mosquera JM, Sternberg C, Loda M, Weinstein H, Song W, Elemento O', jo:'AMP 2020 Annual Meeting & Expo', me:'19 November 2020', li:[] },
+            { t:'poster', y:2020, ti:'Many NGS-Based Assays, One Platform: Ensuring a High-Quality Case Review and Sign-out Process with NGS Reporter (NGSR)', au:'Sboner A, Zisimopoulos P, Tang J, Oakley J, Spiewack M, Velu P, Solomon J, Song W, Park H, Kluk M, Mosquera J, Fernandez E, Simi M, Dorsaint P, Eng K, Catalano J, Pisapia D, Tran H, Tam W, Rennert H, Loda M, Elemento O, Sigaras A', jo:'AMP 2020 Annual Meeting & Expo', me:'19 November 2020', li:[] },
+            { t:'poster', y:2020, ti:'Whole exome sequencing analysis of local/regional and distant metastatic breast carcinoma', au:'McIntire P, Ginter P, Eng KW, Lapolla D, Sigaras A, Beg S, Manohar J, Greco N, Zhang T, Bareja R, Sboner A, Elemento O, Andreopoulou E, Mosquera JM', jo:'USCAP 2020 Annual Meeting', me:'3 March 2020', li:[] },
+            { t:'poster', y:2019, ti:'Mixed Reality for a Precision Medicine Laboratory: The Future Is Now!', au:'Sigaras A, Wilkes D, Hebding C, Martin LM, Bulaon D, Catalano J, Mosquera JM, Sternberg C, Loda M, Weinstein H, Song W, Elemento O, Sboner A', jo:'AMP 2019 Annual Meeting & Expo', me:'9 November 2019', li:[] },
+            { t:'poster', y:2019, ti:'A crowdsourcing approach for high-quality interpretation of cancer variants', au:'Uppal M, Sigaras A, Zisimopoulos P, Tang J, Sternberg CN, Song W, Pisapia D, Rennert H, Sboner A', jo:'ICGC 15th Scientific Workshop and 2nd ARGO Meeting', me:'May 28 2019', li:[] },
+            { t:'poster', y:2018, ti:'Integrating Clinical Genomics into Electronic Health Records to Foster Precision Medicine', au:'Sigaras A, Eng K, Sticca E, Ramazanoglu S, Parmar S, Aljaludi A, Israel M, Artz D, Leslin C, D\'Augustine J, Cheang G, Pancirer D, Tang J, Zisimopoulos P, Rubin M, Tam W, Kluk M, Rennert H, Catalano J, Kim R, Beltran H, Elemento O, Song W, Sboner A', jo:'AMP 2018 Annual Meeting & Expo', me:'2 November 2018', li:[] },
+            { t:'poster', y:2017, ti:'Healthcare Applications for Immersive Remote Collaboration of 3D Medical Data using Virtual and Mixed Reality', au:'Sigaras A, Roshal S, Sboner A, Rubin M, Elemento O', jo:'2017 Startup Symposium, Weill Cornell Medicine', me:'26 January 2017', li:[] },
+            { t:'poster', y:2016, ti:'The EurOPDX Consortium: Objectives, Achievements & Future Directions', au:'Vinolo E, Alférez D, Amant F, Annibali D, Arribas J, Bentires-Alj M, Bernadó C, Bertotti A, Biankin A, Bruna A, Budinská E, Byrne A, Caldas C, Casanovas O, Chang DK, Clarke RB, Corso S, Coukos G, Dangles-Marie V, Decaudin D, Depreeuw J, Dudová Z, Elemento O, Giordano S, Gonzalez-Suarez E, Hafsi H, Hermans E, Hidalgo M, Inghirami G, Jarzabek M, de Jong S, Jonkers J, Kemper K, Křenek A, Kuba M, Lanfrancone L, López Casas P, Mælandsmo G, Marangoni E, Medico E, Miller I, Moran-Jones K, Morancho B, Nematti F, Henrik Norum J, Palmer H, Peeper D, Pelicci P, Piris-Giménez A, Pujana M, Roman S, Rueda O, Seoane J, Serra V, Sigaras A, Soucek L, Tejpar S, Tomas M, Trusolino L, van der Zee A, van de Ven M, Vanhecke D, Villanueva A, Wisman B', jo:'1st EurOPDX Workshop, Switzerland', me:'3 October 2016', li:[] },
+            { t:'poster', y:2013, ti:'Surgical Structured Light (SSL) for Real-Time Minimally-Invasive 3D Imaging', au:'Reiter A, Sigaras A, Allen P', jo:'John Jones Symposium, Columbia University', me:'10 May 2013', li:[] }
+        ];
+
+        // Press: o=outlet, h=headline, d=date label, u=url, f=featured, m=medium
+        var PRESS = [
+            { o:'Weill Cornell News', h:'Students Design AI-Powered Health Solutions at Cornell Health Hackathon', d:'Mar 19, 2026', u:'https://news.weill.cornell.edu/news/2026/03/students-design-ai-powered-health-solutions-at-cornell-health-hackathon', f:false, m:'news' },
+            { o:'WCM Enterprise Innovation', h:'Exploring Human Voice as a Biomarker', d:'Sep 16, 2025', u:'https://innovation.weill.cornell.edu/news-events/exploring-human-voice-biomarker', f:false, m:'news' },
+            { o:'Impact WCM Magazine', h:'The Sounds of Science', d:'Summer 2024', u:'http://impact.weill.cornell.edu/summer-2024/features/sounds-science', f:false, m:'magazine' },
+            { o:'Weill Cornell News', h:'Harnessing Artificial Intelligence Technology for IVF Embryo Selection', d:'Dec 19, 2022', u:'https://news.weill.cornell.edu/news/2022/12/harnessing-artificial-intelligence-technology-for-ivf-embryo-selection', f:false, m:'news' },
+            { o:'NIH News Releases', h:'NIH launches Bridge2AI program to expand the use of artificial intelligence in biomedical and behavioral research', d:'Sep 13, 2022', u:'https://www.nih.gov/news-events/news-releases/nih-launches-bridge2ai-program-expand-use-artificial-intelligence-biomedical-behavioral-research', f:false, m:'news' },
+            { o:'USF Health News', h:'USF Health, Weill Cornell Medicine Earn Inaugural Funding in NIH\'s Newly Launched Bridge2AI Initiative', d:'Sep 13, 2022', u:'https://hscweb3.hsc.usf.edu/blog/2022/09/13/usf-health-cornell-earns-inaugural-nih-funding-to-create-artificial-intelligence-platform-for-using-voice-to-diagnose-disease/', f:false, m:'news' },
+            { o:'Weill Cornell News', h:'USF Health, Weill Cornell Medicine Earn Inaugural Funding in NIH\'s Newly Launched Bridge2AI Initiative', d:'Sep 13, 2022', u:'https://news.weill.cornell.edu/news/2022/09/usf-health-weill-cornell-medicine-earn-inaugural-funding-in-nih%E2%80%99s-newly-launched', f:false, m:'news' },
+            { o:'Bloomberg', h:'The Next Life-Saving Innovation in Medicine May Be Developed Only for You', d:'Mar 7, 2022', u:'https://sponsored.bloomberg.com/article/weill-cornell-medicine/the-next-life-saving-innovation-in-medicine-may-be-developed-only-for-you', f:true, m:'news' },
+            { o:'The New York Times', h:'Experts still aren\'t sure about corporate meetings taking place in the metaverse', d:'Aug 30, 2021', u:'https://www.nytimes.com/live/2021/08/30/business/economy-stock-market-news#experts-still-arent-sure-about-corporate-meetings-taking-place-in-the-metaverse', f:true, m:'news' },
+            { o:'NBC News · Peacock', h:'The Overview: What Does the Future of Work Look Like?', d:'Jan 30, 2021', u:'https://www.peacocktv.com/watch/playback/vod/GMO_00000000363812_01/b2c4bc2c-dafc-3391-900b-fde591ea42ef', f:true, m:'video' },
+            { o:'Protocol', h:'Coronavirus sent us home. Will VR bring us back together?', d:'May 28, 2020', u:'https://www.protocol.com/vr-headset-future-of-work', f:false, m:'news' },
+            { o:'Macaulay Honors College', h:'Macaulay Honors College Students to Assist With COVID-19 Effort', d:'Apr 6, 2020', u:'https://macaulay.cuny.edu/news-and-events/macaulay-honors-college-students-to-assist-with-covid-19-effort/', f:false, m:'news' },
+            { o:'The New York Times', h:'How Are You Feeling? Surveys Aim to Detect Covid-19 Hot Spots Early', d:'Apr 1, 2020', u:'https://www.nytimes.com/2020/04/01/world/middleeast/coronavirus-detection-surveys.html', f:true, m:'news' },
+            { o:'CNN', h:'Would you trust an algorithm to diagnose an illness?', d:'Jul 15, 2019', u:'https://www.cnn.com/2019/07/15/business/artificial-intelligence-healthcare/index.html', f:true, m:'news' },
+            { o:'NYP Health Matters', h:'Behind the Latest Advance in IVF Treatment', d:'Apr 24, 2019', u:'https://healthmatters.nyp.org/behind-the-latest-advance-in-ivf-treatment/', f:false, m:'news' },
+            { o:'Cornell Chronicle', h:'Researchers test using AI to optimize IVF embryo selection', d:'Apr 11, 2019', u:'https://news.cornell.edu/stories/2019/04/researchers-test-using-ai-optimize-ivf-embryo-selection', f:false, m:'news' },
+            { o:'Wired', h:'AI Could Scan IVF Embryos to Help Make Babies More Quickly', d:'Apr 5, 2019', u:'https://www.wired.com/story/ai-could-scan-ivf-embryos-to-help-make-babies-more-quickly/', f:true, m:'news' },
+            { o:'AI in Healthcare', h:'AI optimizes embryo selection for IVF', d:'Apr 5, 2019', u:'https://www.aiin.healthcare/topics/imaging/ai-optimizes-embryo-selection-ivf', f:false, m:'news' },
+            { o:'The Wall Street Journal', h:'IVF Often Doesn\'t Work. Could an Algorithm Help?', d:'Apr 4, 2019', u:'https://www.wsj.com/articles/ivf-often-doesnt-work-could-an-algorithm-help-11554386243', f:true, m:'news' },
+            { o:'Weill Cornell News', h:'Artificial Intelligence Approach Optimizes Embryo Selection for IVF', d:'Apr 4, 2019', u:'https://news.weill.cornell.edu/news/2019/04/artificial-intelligence-approach-optimizes-embryo-selection-for-ivf', f:false, m:'news' },
+            { o:'Science Daily', h:'Artificial intelligence approach optimizes embryo selection for IVF', d:'Apr 4, 2019', u:'https://www.sciencedaily.com/releases/2019/04/190404161003.htm', f:false, m:'news' },
+            { o:'Microsoft Developer Blog', h:'Voronoi Selection for Cancer Drug Network Visualization in Mixed Reality', d:'Mar 9, 2018', u:'https://www.microsoft.com/developerblog/2018/03/09/voronoi-selection-cancer-drug-network-visualization-mixed-reality/', f:false, m:'news' },
+            { o:'Channel 9', h:'Behind the Scenes: How Weill Cornell Medicine built a chatbot for clinicians to gain fast access to medical data', d:'Oct 17, 2017', u:'https://channel9.msdn.com/Blogs/DevRadio/DR1747', f:false, m:'video' },
+            { o:'Microsoft Windows Blogs', h:'Making mixed reality: a conversation with Alexandros Sigaras and Sophia Roshal', d:'Sep 13, 2017', u:'https://blogs.windows.com/windowsexperience/2017/09/13/making-mixed-reality-conversation-alexandros-sigaras-sophia-roshal/', f:false, m:'news' },
+            { o:'Microsoft Technical Case Studies', h:'Bot gives Weill Cornell clinicians fast access to medical data', d:'Jun 15, 2017', u:'https://microsoft.github.io/techcasestudies/bot%20framework/2017/06/15/WeillCornell.html', f:false, m:'news' },
+            { o:'The Sociable', h:'How Mixed Reality is Transforming Collaborative Cancer Research', d:'Jun 14, 2017', u:'https://sociable.co/technology/mixed-reality-cancer/', f:false, m:'news' },
+            { o:'Arirang', h:'Smart with Heart (Special Documentary)', d:'Mar 26, 2017', u:'https://www.youtube.com/watch?v=gHa4ddmdCUU', f:false, m:'video' },
+            { o:'WCM Magazine', h:'Virtual Vision — 3D technology could offer a potent weapon in cancer care', d:'Winter 2016', u:'http://www.weillcornellmedicine-digital.com/weillcornellmedicine/vol_15_no_3?pg=20#pg20', f:false, m:'magazine' },
+            { o:'Weill Cornell News', h:'Researchers are Using Virtual Reality to Help Treat Cancer', d:'Jul 15, 2016', u:'https://weillcornell.org/news/researchers-are-using-virtual-reality-to-help-treat-cancer', f:false, m:'news' },
+            { o:'CBS New York', h:'Seen At 11: Doctors Using Virtual Reality To Treat Cancer Patients', d:'Jul 13, 2016', u:'http://newyork.cbslocal.com/2016/07/13/virtual-reality-cancer-patients/', f:true, m:'video' },
+            { o:'Popular Science', h:'Here\'s How Virtual Reality Could Help Doctors Treat Cancer', d:'Feb 24, 2016', u:'https://www.popsci.com/how-virtual-reality-could-help-doctors-treat-cancer', f:true, m:'news' },
+            { o:'ABC7 Eyewitness News', h:'New 3D goggles help doctors search for mutations in cancerous tumors', d:'Jan 27, 2016', u:'http://abc7ny.com/health/new-3d-goggles-help-doctors-search-for-mutations-in-cancerous-tumors/1176716/', f:true, m:'video' },
+            { o:'Science Daily', h:'Scientists unveil prostate cancer\'s \'Rosetta Stone\'', d:'May 21, 2015', u:'https://www.sciencedaily.com/releases/2015/05/150521133732.htm', f:false, m:'news' }
+        ];
+
+        // Talks: tp=type (invited|lecture), o=sort key, d=date label, ti=title, ev=event/course, ve=venue/location, ho=host
+        var TALKS = [
+            // Invited Talks
+            { tp:'invited', o:20260305, d:'Mar 5, 2026', ti:'FutureCare: How AI + XR Are Reimagining Health and Healing', ev:'First Thursdays', ve:'Next Jump NYC HQ' },
+            { tp:'invited', o:20250717, d:'Jul 17, 2025', ti:'AI & Medical Extended Reality in the era of Precision Surgery', ev:'Society of Robotic Surgery (SRS) 2025 Annual Meeting', ve:'Palais du Congrès Convention Center — Marie Curie B, Strasbourg, France' },
+            { tp:'invited', o:20240609, d:'Jun 9, 2024', ti:'Precision Healthcare — AI and XR interventions', ev:'2024 PHIE — Transforming Health Professional Education, Research and Care', ve:'São Paulo, Brazil' },
+            { tp:'invited', o:20230630, d:'Jun 30, 2023', ti:'AI and Medical Extended Reality in the Era of Precision Medicine', ev:'36th Annual Congress of the Hellenic Neurosurgical Society & 16th Annual Neurosurgery Nurses Meeting', ve:'Athens, Greece' },
+            { tp:'invited', o:20221001, d:'Oct 1, 2022', ti:'AI and XR opportunities in Clinical Education and Care Delivery', ev:'Virtual Healthcare in the Mainstream Symposium & Research Forum 2022', ve:'Weill Cornell Medicine' },
+            { tp:'invited', o:20210629, d:'Jun 29, 2021', ti:'XR in Medicine in the era of Precision Medicine', ev:'Stanford Healthcare Innovation Lab', ve:'' },
+            { tp:'invited', o:20210516, d:'May 16, 2021', ti:'XR in Medicine in the era of Precision Medicine', ev:'9th International Summer School in Medical Biosciences Research & Management', ve:'World Hellenic Biomedical Association' },
+            { tp:'invited', o:20210318, d:'Mar 18, 2021', ti:'Metaverse: The Next Frontier in Medicine?', ev:'Institute for Computational Biomedicine, Research in Progress Seminar Series', ve:'Weill Cornell Medicine' },
+            { tp:'invited', o:20210115, d:'Jan 15, 2021', ti:'XR in Medicine in the era of Precision Medicine', ev:'Institute for Computational Biomedicine, Research in Progress Seminar Series', ve:'Weill Cornell Medicine' },
+            { tp:'invited', o:20200724, d:'Jul 24, 2020', ti:'XR in Medicine', ev:'2nd Biomedical Big Data Symposium', ve:'New York City College of Technology, CUNY' },
+            { tp:'invited', o:20200214, d:'Feb 14, 2020', ti:'AI and Mixed Reality in Precision Medicine', ev:'2nd Biomedical Big Data Symposium', ve:'New York City College of Technology, CUNY' },
+            { tp:'invited', o:20200131, d:'Jan 31, 2020', ti:'Mixed Reality in Precision Medicine', ev:'NYU Tandon School of Engineering', ve:'New York, NY' },
+            { tp:'invited', o:20191028, d:'Oct 28–29, 2019', ti:'Digital Technologies for Clinical Care (Panelist) · Artificial Intelligence for Cancer (Discussion Leader)', ev:'Precision Medicine Research Symposium', ve:'Cornell Tech and Weill Cornell Medicine, New York, NY' },
+            { tp:'invited', o:20191025, d:'Oct 25–26, 2019', ti:'XR in Healthcare', ev:'R Lab Master Class 2019', ve:'' },
+            { tp:'invited', o:20190619, d:'Jun 19, 2019', ti:'Big Data Visualization and Spatial Computing in Precision Medicine', ev:'Biomedical Big Data Summer Bootcamp 2019', ve:'Weill Cornell Medicine' },
+            { tp:'invited', o:20190605, d:'Jun 5, 2019', ti:'XR in Medicine in the era of Precision Medicine', ev:'R Lab Well 2019', ve:'' },
+            { tp:'invited', o:20190215, d:'Feb 15, 2019', ti:'Big Data in Precision Medicine', ev:'1st Biomedical Big Data Symposium', ve:'New York City College of Technology, CUNY' },
+            { tp:'invited', o:20180620, d:'Jun 20, 2018', ti:'Big Data Visualization — Mixed Reality, Virtual Reality and Augmented Reality', ev:'Biomedical Big Data Summer Bootcamp 2018', ve:'Weill Cornell Medicine' },
+            { tp:'invited', o:20170111, d:'Jan 11, 2017', ti:'How HoloLens transforms Healthcare', ev:'Microsoft Reactor, Grand Central Tech', ve:'New York, NY' },
+            { tp:'invited', o:20081121, d:'Nov 21, 2008', ti:'Introduction to Robotics with MS Robotics Studio', ev:'Microsoft', ve:'Athens, Greece' },
+            { tp:'invited', o:20080129, d:'Jan 29, 2008', ti:'Robotics Warehouse Project', ev:'Inaugural opening of the Microsoft Innovation Center in Greece — presented to Bill Gates (Chairman of Microsoft) and Kostas Karamanlis (Prime Minister of Greece)', ve:'Microsoft Innovation Center, Greece' },
+            { tp:'invited', o:20071217, d:'Dec 17, 2007', ti:'Introduction to Robotics with MS Robotics Studio and LEGO Mindstorms NXT', ev:'IEEE hosted event', ve:'University of Patras, Greece' },
+
+            // Guest Lectures
+            { tp:'lecture', o:20260218, d:'Feb 18, 2026', ti:'AI and Medical Extended Reality to Care, Discover, and Teach', ev:'CMBP 5005: Functional Interpretation of High-Throughput Data, Weill Cornell Medicine', ho:'Prof. Andrea Sboner' },
+            { tp:'lecture', o:20250227, d:'Feb 27, 2025', ti:'Designing for AI and Medical Extended Reality in the Era of Precision Medicine', ev:'INFO 5358: 3D Interaction Design, Cornell Tech', ho:'Prof. Harald Haraldsson' },
+            { tp:'lecture', o:20250205, d:'Feb 5, 2025', ti:'AI and Medical Extended Reality in the Era of Precision Medicine', ev:'CMBP 5005: Functional Interpretation of High-Throughput Data, Weill Cornell Medicine', ho:'Prof. Andrea Sboner' },
+            { tp:'lecture', o:20240306, d:'Mar 6, 2024', ti:'AI and Medical Extended Reality in the Era of Precision Medicine', ev:'Biomedical Informatics Colloquium, New York City College of Technology, CUNY', ho:'Prof. Eugenia Giannopoulou' },
+            { tp:'lecture', o:20240131, d:'Jan 31, 2024', ti:'AI and Medical Extended Reality in the Era of Precision Medicine', ev:'Functional Interpretation of High-Throughput Data, Weill Cornell Medicine', ho:'Prof. Andrea Sboner' },
+            { tp:'lecture', o:20231129, d:'Nov 29, 2023', ti:'AI and Medical Extended Reality in the Era of Precision Medicine', ev:'Biomedical Informatics Colloquium, New York City College of Technology, CUNY', ho:'Prof. Pegah Khosravi' },
+            { tp:'lecture', o:20230301, d:'Mar 1, 2023', ti:'AI and Medical Extended Reality in the Era of Precision Medicine', ev:'Biomedical Informatics Colloquium, New York City College of Technology, CUNY', ho:'Prof. Pegah Khosravi' },
+            { tp:'lecture', o:20230201, d:'Feb 1, 2023', ti:'AI and Medical Extended Reality in the Era of Precision Medicine', ev:'Functional Interpretation of High-Throughput Data, Weill Cornell Medicine', ho:'Prof. Andrea Sboner' },
+            { tp:'lecture', o:20221205, d:'Dec 5, 2022', ti:'AI and Medical Extended Reality in the Era of Precision Medicine', ev:'Topics in Pathophysiology, Deree College, The American College of Greece', ho:'Prof. Alexia Victoria Polissidis' },
+            { tp:'lecture', o:20220216, d:'Feb 16, 2022', ti:'Medical Extended Reality in the Era of Precision Medicine', ev:'Biomedical Informatics Colloquium, New York City College of Technology, CUNY', ho:'Prof. Eugenia Giannopoulou' },
+            { tp:'lecture', o:20211117, d:'Nov 17, 2021', ti:'Medical Extended Reality in the Era of Precision Medicine', ev:'Data Structures and Algorithms for Computational Biology, Weill Cornell Medicine', ho:'Prof. Iman Hajirasouliha' },
+            { tp:'lecture', o:20211013, d:'Oct 13, 2021', ti:'Medical Extended Reality in the Era of Precision Medicine', ev:'Virtual and Augmented Reality, Cornell Tech', ho:'Prof. Harald Haraldsson' },
+            { tp:'lecture', o:20201204, d:'Dec 4, 2020', ti:'XR in Medicine in the era of Precision Medicine', ev:'Hostos Community College, CUNY', ho:'Prof. Yoel Rodriguez, Prof. Anna Ivanova' },
+            { tp:'lecture', o:20191121, d:'Nov 21, 2019', ti:'Mixed Reality in Precision Medicine', ev:'Virtual and Augmented Reality, Cornell Tech', ho:'Prof. Harald Haraldsson' },
+            { tp:'lecture', o:20151202, d:'Dec 2, 2015', ti:'Precision Medicine', ev:'Bioinformatics II, New York City College of Technology, CUNY', ho:'Prof. Eugenia Giannopoulou' },
+            { tp:'lecture', o:20111124, d:'Nov 24, 2011', ti:'Intro to Programming in C++ and C#', ev:'Introduction to Programming, University of Piraeus, Greece', ho:'Prof. Ioannis-Christos Panagiotopoulos' },
+            { tp:'lecture', o:20101216, d:'Dec 16, 2010', ti:'Introduction to Expression Blend', ev:'Human Computer Interaction, University of Piraeus, Greece', ho:'Prof. Maria Virvou' },
+            { tp:'lecture', o:20101209, d:'Dec 9, 2010', ti:'Introduction to Sketchflow', ev:'E-learning, University of Piraeus, Greece', ho:'Prof. Symeon Retalis' }
+        ];
+
+        /* ========================== HELPERS ========================== */
+
+        var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function esc(s) {
+            return String(s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+        function hiMe(s) {
+            return s.replace(/(A\.?\s+Sigaras|Sigaras,?\s+A(?:lexandros)?\.?)/g, '<strong class="pub-me">$1</strong>');
+        }
+        var TYPE_LABEL = { journal: 'Journal', conference: 'Conference', abstract: 'Abstract', poster: 'Poster' };
+
+        function linkChip(link) {
+            var map = {
+                doi:   { h: 'https://doi.org/' + link.v, l: 'DOI', i: 'ai ai-doi' },
+                pmid:  { h: 'https://pubmed.ncbi.nlm.nih.gov/' + link.v + '/', l: 'PubMed', i: 'ai ai-pubmed' },
+                pmc:   { h: 'https://www.ncbi.nlm.nih.gov/pmc/articles/' + link.v + '/', l: 'PMC', i: 'fa fa-lock-open' },
+                arxiv: { h: 'https://arxiv.org/abs/' + link.v, l: 'arXiv', i: 'ai ai-arxiv' },
+                url:   { h: link.v, l: link.l || 'Link', i: 'fa fa-arrow-up-right-from-square' }
+            };
+            var m = map[link.k];
+            if (!m) return '';
+            return '<a class="cs-link" href="' + m.h + '" target="_blank" rel="noopener noreferrer">' +
+                   '<i class="' + m.i + '" aria-hidden="true"></i>' + esc(m.l) + '</a>';
+        }
+
+        function buildTabs(container, tabs, onSelect) {
+            container.innerHTML = '';
+            tabs.forEach(function (t, i) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'cs-tab' + (i === 0 ? ' active' : '');
+                b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+                b.dataset.k = t.k;
+                b.innerHTML = esc(t.l) + (t.n != null ? '<span class="cs-tab-n">' + t.n + '</span>' : '');
+                b.addEventListener('click', function () {
+                    Array.prototype.forEach.call(container.querySelectorAll('.cs-tab'), function (x) {
+                        x.classList.remove('active');
+                        x.setAttribute('aria-pressed', 'false');
+                    });
+                    b.classList.add('active');
+                    b.setAttribute('aria-pressed', 'true');
+                    onSelect(t.k);
+                });
+                container.appendChild(b);
+            });
+        }
+
+        // Reveal-on-scroll (respects reduced motion)
+        var revObserver = null;
+        if (!REDUCE_MOTION && 'IntersectionObserver' in window) {
+            revObserver = new IntersectionObserver(function (entries, obs) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+                });
+            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+        }
+        function observeReveal(nodes) {
+            nodes.forEach(function (n, i) {
+                if (revObserver) {
+                    n.style.transitionDelay = Math.min(i, 6) * 0.04 + 's';
+                    revObserver.observe(n);
+                } else {
+                    n.classList.add('in');
+                }
+            });
+        }
+        function ensureVisible(node) { if (!node.classList.contains('in')) node.classList.add('in'); }
+
+        /* ====================== PUBLICATIONS ======================= */
+
+        function initPubs() {
+            var listEl = document.getElementById('pub-list');
+            var emptyEl = document.getElementById('pub-empty');
+            var tabsEl = document.getElementById('pub-tabs');
+            var searchEl = document.getElementById('pub-search');
+            var totalEl = document.getElementById('pub-total');
+            var statusEl = document.getElementById('pub-status');
+            if (!listEl) return;
+
+            totalEl.textContent = PUBS.length + ' publications';
+
+            var nodes = PUBS.map(function (p) {
+                var el = document.createElement('article');
+                el.className = 'cs-card pub-card cs-reveal';
+                var links = (p.li || []).map(linkChip).join('');
+                el.innerHTML =
+                    '<div class="pub-aside"><span class="pub-year">' + p.y + '</span>' +
+                    '<span class="pub-tag t-' + p.t + '">' + TYPE_LABEL[p.t] + '</span></div>' +
+                    '<div class="pub-body">' +
+                    '<h3 class="pub-title">' + esc(p.ti) + '</h3>' +
+                    '<p class="pub-authors">' + hiMe(esc(p.au)) + '</p>' +
+                    '<p class="pub-journal"><em>' + esc(p.jo) + '</em>' +
+                    (p.me ? ' <span class="pub-meta">' + esc(p.me) + '</span>' : '') + '</p>' +
+                    (links ? '<div class="pub-links">' + links + '</div>' : '') +
+                    '</div>';
+                listEl.appendChild(el);
+                return { el: el, type: p.t, s: (p.ti + ' ' + p.au + ' ' + p.jo + ' ' + p.y).toLowerCase() };
+            });
+
+            var counts = { all: PUBS.length };
+            PUBS.forEach(function (p) { counts[p.t] = (counts[p.t] || 0) + 1; });
+            var tabs = [
+                { k: 'all', l: 'All', n: counts.all },
+                { k: 'journal', l: 'Journal Articles', n: counts.journal || 0 },
+                { k: 'conference', l: 'Conference', n: counts.conference || 0 },
+                { k: 'abstract', l: 'Abstracts', n: counts.abstract || 0 },
+                { k: 'poster', l: 'Posters', n: counts.poster || 0 }
+            ];
+
+            var activeType = 'all', query = '';
+            function apply() {
+                var shown = 0;
+                nodes.forEach(function (n) {
+                    var ok = (activeType === 'all' || n.type === activeType) &&
+                             (query === '' || n.s.indexOf(query) !== -1);
+                    n.el.style.display = ok ? '' : 'none';
+                    if (ok) { shown++; ensureVisible(n.el); }
+                });
+                emptyEl.classList.toggle('show', shown === 0);
+                statusEl.textContent = shown === 0
+                    ? 'No publications match your search'
+                    : 'Showing ' + shown + ' of ' + PUBS.length + ' publications';
+            }
+
+            buildTabs(tabsEl, tabs, function (k) { activeType = k; apply(); });
+
+            var debounce;
+            searchEl.addEventListener('input', function () {
+                clearTimeout(debounce);
+                debounce = setTimeout(function () {
+                    query = searchEl.value.trim().toLowerCase();
+                    apply();
+                }, 140);
+            });
+
+            observeReveal(nodes.map(function (n) { return n.el; }));
+            statusEl.textContent = 'Showing all ' + PUBS.length + ' publications';
+        }
+
+        /* ========================== PRESS ========================== */
+
+        function initPress() {
+            var gridEl = document.getElementById('press-grid');
+            var emptyEl = document.getElementById('press-empty');
+            var tabsEl = document.getElementById('press-tabs');
+            var totalEl = document.getElementById('press-total');
+            var statusEl = document.getElementById('press-status');
+            if (!gridEl) return;
+
+            var MEDIA_ICON = { news: 'fa fa-newspaper', video: 'fa fa-circle-play', magazine: 'fa fa-book-open' };
+            totalEl.textContent = PRESS.length + ' features';
+
+            var nodes = PRESS.map(function (p) {
+                var el = document.createElement('article');
+                el.className = 'cs-card press-card cs-reveal';
+                el.innerHTML =
+                    '<div class="press-top">' +
+                    '<span class="press-outlet"><i class="' + (MEDIA_ICON[p.m] || MEDIA_ICON.news) + '" aria-hidden="true"></i>' + esc(p.o) + '</span>' +
+                    (p.f ? '<span class="press-featured" title="Featured"><i class="fa fa-star" aria-hidden="true"></i></span>' : '') +
+                    '</div>' +
+                    '<h3 class="press-headline">' + esc(p.h) + '</h3>' +
+                    '<div class="press-foot">' +
+                    '<span class="press-date">' + esc(p.d) + '</span>' +
+                    '<a class="cs-link" href="' + p.u + '" target="_blank" rel="noopener noreferrer">' +
+                    '<i class="fa fa-arrow-up-right-from-square" aria-hidden="true"></i>Read</a>' +
+                    '</div>';
+                gridEl.appendChild(el);
+                return { el: el, featured: !!p.f };
+            });
+
+            var featuredCount = PRESS.filter(function (p) { return p.f; }).length;
+            var tabs = [
+                { k: 'all', l: 'All', n: PRESS.length },
+                { k: 'featured', l: 'Featured', n: featuredCount }
+            ];
+            var active = 'all';
+            function apply() {
+                var shown = 0;
+                nodes.forEach(function (n) {
+                    var ok = active === 'all' || n.featured;
+                    n.el.style.display = ok ? '' : 'none';
+                    if (ok) { shown++; ensureVisible(n.el); }
+                });
+                emptyEl.classList.toggle('show', shown === 0);
+                statusEl.textContent = shown === 0
+                    ? 'No coverage in this category'
+                    : 'Showing ' + shown + ' of ' + PRESS.length + ' features';
+            }
+            buildTabs(tabsEl, tabs, function (k) { active = k; apply(); });
+            observeReveal(nodes.map(function (n) { return n.el; }));
+            statusEl.textContent = 'Showing all ' + PRESS.length + ' features';
+        }
+
+        /* ========================== TALKS ========================== */
+
+        function initTalks() {
+            var listEl = document.getElementById('talks-list');
+            var emptyEl = document.getElementById('talks-empty');
+            var tabsEl = document.getElementById('talks-tabs');
+            var totalEl = document.getElementById('talks-total');
+            var statusEl = document.getElementById('talks-status');
+            if (!listEl) return;
+
+            totalEl.textContent = TALKS.length + ' engagements';
+
+            // Sort newest-first for the combined view
+            var sorted = TALKS.slice().sort(function (a, b) { return b.o - a.o; });
+
+            var nodes = sorted.map(function (t) {
+                var el = document.createElement('article');
+                el.className = 'cs-card talk-card cs-reveal';
+                var tag = t.tp === 'invited' ? 'Invited Talk' : 'Guest Lecture';
+                var body = '<span class="pub-tag ' + (t.tp === 'invited' ? 't-journal' : 't-poster') + '" style="margin-bottom:.5rem;display:inline-block;">' + tag + '</span>' +
+                    '<h3 class="talk-title">' + esc(t.ti) + '</h3>' +
+                    '<p class="talk-event">' + esc(t.ev) + '</p>' +
+                    (t.ve ? '<p class="talk-venue">' + esc(t.ve) + '</p>' : '') +
+                    (t.ho ? '<p class="talk-host"><i class="fa fa-chalkboard-user" aria-hidden="true"></i>Host: ' + esc(t.ho) + '</p>' : '');
+                el.innerHTML = '<div class="talk-date">' + esc(t.d) + '</div><div class="talk-body">' + body + '</div>';
+                listEl.appendChild(el);
+                return { el: el, type: t.tp };
+            });
+
+            var counts = { invited: 0, lecture: 0 };
+            TALKS.forEach(function (t) { counts[t.tp]++; });
+            var tabs = [
+                { k: 'all', l: 'All', n: TALKS.length },
+                { k: 'invited', l: 'Invited Talks', n: counts.invited },
+                { k: 'lecture', l: 'Guest Lectures', n: counts.lecture }
+            ];
+            var active = 'all';
+            function apply() {
+                var shown = 0;
+                nodes.forEach(function (n) {
+                    var ok = active === 'all' || n.type === active;
+                    n.el.style.display = ok ? '' : 'none';
+                    if (ok) { shown++; ensureVisible(n.el); }
+                });
+                emptyEl.classList.toggle('show', shown === 0);
+                statusEl.textContent = shown === 0
+                    ? 'No talks in this category'
+                    : 'Showing ' + shown + ' of ' + TALKS.length + ' engagements';
+            }
+            buildTabs(tabsEl, tabs, function (k) { active = k; apply(); });
+            observeReveal(nodes.map(function (n) { return n.el; }));
+            statusEl.textContent = 'Showing all ' + TALKS.length + ' engagements';
+        }
+
+        /* ========================== BOOT ========================== */
+
+        function boot() { initPubs(); initPress(); initTalks(); }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', boot);
+        } else {
+            boot();
+        }
+    })();
     </script>
 
     <!-- Google Analytics - Optimized -->
