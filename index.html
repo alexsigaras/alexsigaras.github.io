@@ -233,6 +233,10 @@
         }
         .social-row a i { font-size: .95rem; }
         .social-row a:hover { color: var(--accent); }
+        .social-mask { display: inline-block; background-color: currentColor; vertical-align: middle;
+            -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+        .social-row a .social-mask { height: 1rem; width: 1.67rem; }
+        .foot-social a .social-mask { height: 1.05rem; width: 1.75rem; }
 
         .stat-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 2.4rem; }
         .stat-tile {
@@ -491,7 +495,7 @@
                             <span class="r-title">Assistant Professor of Research in Systems &amp; Computational Biomedicine</span>
                             <span class="r-title">Director of AI &amp; XR, Englander Institute for Precision Medicine</span>
                             <span class="r-inst">Weill Cornell Medicine</span>
-                            <span class="r3">Precision Oncology · Multimodal AI · Extended Reality</span>
+                            <span class="r3">Precision Medicine · Multimodal AI · Extended Reality</span>
                         </div>
                         <div class="hero-actions">
                             <a class="text-link" href="#about">Read about me <i class="fa fa-arrow-down" aria-hidden="true" style="font-size:.8rem"></i></a>
@@ -529,7 +533,7 @@
                     </div>
                     <div class="about-body" id="about-body">
                         <p>Alexandros Sigaras is an Assistant Professor of Research in Systems and Computational Biomedicine at Weill Cornell Medicine, where he directs the AI-XR Lab and serves as Director of Artificial Intelligence and Extended Reality at the Englander Institute for Precision Medicine.</p>
-                        <p>His research focuses on the development of secure, scalable, and AI-driven computing solutions, deployed primarily in the cloud, that transform complex, multimodal medical data into actionable clinical and scientific insight, with applications spanning precision oncology and broader areas of medicine. This work encompasses healthcare system design, laboratory information management systems (LIMS), and the design of computational pipelines for large-scale genomic analysis in cancer care, together with multimodal AI that integrates genomic, imaging, and bioacoustic data. As Co-Investigator and Module Lead on the National Institutes of Health (NIH) Bridge2AI: Voice as a Biomarker of Health consortium, he contributes to the development of ethically sourced voice datasets and foundation models that employ the human voice as a biomarker of health.</p>
+                        <p>His research focuses on the development of secure, scalable, and AI-driven computing solutions, deployed primarily in the cloud, that transform complex, multimodal medical data into actionable clinical and scientific insight, with applications spanning precision medicine and broader areas of medicine. This work encompasses healthcare system design, laboratory information management systems (LIMS), and the design of computational pipelines for large-scale genomic analysis in cancer care, together with multimodal AI that integrates genomic, imaging, and bioacoustic data. As Co-Investigator and Module Lead on the National Institutes of Health (NIH) Bridge2AI: Voice as a Biomarker of Health consortium, he contributes to the development of ethically sourced voice datasets and foundation models that employ the human voice as a biomarker of health.</p>
                         <p>In a complementary line of inquiry, Sigaras leads research on extended reality (XR) and spatial computing in medicine, ranging from the immersive visualization of genomic and healthcare data for remote collaboration to AI-powered virtual humans and conversational agents for clinical training and education. By uniting generative AI, large language models, and mixed, virtual, and augmented reality, he seeks to apply these technologies in a translational manner that benefits patients while advancing the education of future clinicians across numerous medical domains, including precision medicine, emergency medicine, embryology, otorhinolaryngology, cardiology, pathology, radiology, and medical education.</p>
                         <p>A Fulbright Scholar, Sigaras earned his Master of Science in Computer Science from Columbia University, where he conducted research in Professor Peter Allen's Robotics Laboratory on medical robotics for surgery and on brain-computer interfaces. As an undergraduate, he delivered numerous invited talks on his research, presenting to audiences that included the Prime Minister of Greece and the Chairman of Microsoft, Bill Gates.</p>
                     </div>
@@ -661,12 +665,12 @@
             scholar: { l: "Scholar", h: "https://scholar.google.com/citations?user=LupDxKUAAAAJ&hl=en&oi=ao", i: "ai ai-google-scholar" },
             orcid: { l: "ORCID", h: "https://orcid.org/0000-0002-7607-559X", i: "ai ai-orcid" },
             pubmed: { l: "PubMed", h: "https://www.ncbi.nlm.nih.gov/myncbi/alexandros.sigaras.1/bibliography/public/", i: "ai ai-pubmed" },
-            scholar2: { l: "Semantic", h: "https://www.semanticscholar.org/author/Alexandros-Sigaras/2835550", i: "ai ai-semantic-scholar" },
+            nih: { l: "RePORTER", aria: "NIH RePORTER", h: "https://reporter.nih.gov/search/TyXfZqxXKkq0blO3U9uYJw/projects", img: "data:image/png;base64,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" },
             github: { l: "GitHub", h: "https://github.com/alexsigaras", i: "fab fa-github" },
             x: { l: "X", h: "https://twitter.com/AlexSigaras", i: "fab fa-x-twitter" }
         };
-        var SOCIAL_ORDER = ['cv', 'linkedin', 'scholar', 'scholar2', 'orcid', 'pubmed', 'github', 'x'];
-        var FOOT_ORDER = ['linkedin', 'scholar', 'orcid', 'pubmed', 'github', 'x'];
+        var SOCIAL_ORDER = ['cv', 'linkedin', 'scholar', 'orcid', 'pubmed', 'nih', 'github', 'x'];
+        var FOOT_ORDER = ['linkedin', 'scholar', 'orcid', 'pubmed', 'nih', 'github', 'x'];
 
         function renderSocial(el, order, withLabels) {
             if (!el) return;
@@ -674,8 +678,11 @@
                 var d = LINKS[k]; if (!d) return;
                 var a = document.createElement('a');
                 a.href = d.h; a.target = '_blank'; a.rel = 'noopener noreferrer';
-                if (!withLabels) a.setAttribute('aria-label', d.l);
-                a.innerHTML = '<i class="' + d.i + '" aria-hidden="true"></i>' + (withLabels ? d.l : '');
+                if (!withLabels) a.setAttribute('aria-label', d.aria || d.l);
+                var icon = d.img
+                    ? '<span class="social-mask" style="--m:url(\'' + d.img + '\')" aria-hidden="true"></span>'
+                    : '<i class="' + d.i + '" aria-hidden="true"></i>';
+                a.innerHTML = icon + (withLabels ? d.l : '');
                 el.appendChild(a);
             });
         }
